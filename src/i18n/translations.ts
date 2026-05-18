@@ -1,0 +1,330 @@
+export interface TranslationSchema {
+  nav: {
+    home: string;
+    about: string;
+    brands: string;
+    contact: string;
+    getQuote: string;
+  };
+  home: {
+    heroBadge: string;
+    heroTitleText1: string;
+    heroTitleHighlight: string;
+    heroTitleText2: string;
+    heroSubtitle: string;
+    exploreBtn: string;
+    legacyBtn: string;
+    precisionTitle: string;
+    precisionDesc: string;
+    missionLink: string;
+    commitmentTitle1: string;
+    commitmentHighlight: string;
+    commitmentTitle2: string;
+  };
+  about: {
+    isoBadge: string;
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    missionTitle: string;
+    missionDesc: string;
+    visionTitle: string;
+    visionDesc: string;
+    sitesTitle: string;
+    sitesSubtitle: string;
+    sfaxBadge: string;
+    sfaxTitle: string;
+    sfaxDesc: string;
+    tunisBadge: string;
+    tunisTitle: string;
+    tunisDesc: string;
+    msakenBadge: string;
+    msakenTitle: string;
+    msakenDesc: string;
+    viewMap: string;
+    viewPhoto: string;
+  };
+  brands: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    statBrands: string;
+    statCategories: string;
+    statFood: string;
+    statPrinting: string;
+    all: string;
+    tapes: string;
+    packaging: string;
+    kitchen: string;
+    specifications: string;
+    features: string;
+    requestQuote: string;
+    viewDetails: string;
+    backToAll: string;
+    adproDesc: string;
+    twistDesc: string;
+    specName: string;
+    specValue: string;
+  };
+  contact: {
+    title: string;
+    titleHighlight: string;
+    subtitle: string;
+    formHeading: string;
+    fullName: string;
+    fullNamePlaceholder: string;
+    emailAddress: string;
+    emailPlaceholder: string;
+    subject: string;
+    subjectPlaceholder: string;
+    message: string;
+    messagePlaceholder: string;
+    sendBtn: string;
+    successHeading: string;
+    successDesc: string;
+    directContact: string;
+    phone: string;
+    commercial: string;
+    sfaxHeadquarters: string;
+    sfaxAddress: string;
+    tunisBranch: string;
+    tunisAddress: string;
+    msakenFacility: string;
+    msakenAddress: string;
+  };
+  footer: {
+    legal: string;
+    privacy: string;
+    terms: string;
+    solutions: string;
+    indSol: string;
+    foodPack: string;
+    quickContact: string;
+    emailPlaceholder: string;
+    helpPlaceholder: string;
+    sendBtn: string;
+    successState: string;
+    allRights: string;
+  };
+}
+
+export const translations: Record<'fr' | 'en', TranslationSchema> = {
+  fr: {
+    nav: {
+      home: 'Accueil',
+      about: 'À Propos',
+      brands: 'Marques',
+      contact: 'Contact',
+      getQuote: 'Obtenir un Devis'
+    },
+    home: {
+      heroBadge: "Excellence de l'Emballage Industriel et Alimentaire",
+      heroTitleText1: 'Une Performance sur laquelle vous pouvez ',
+      heroTitleHighlight: 'Compter',
+      heroTitleText2: ', Partout.',
+      heroSubtitle: 'Conception de solutions adhésives supérieures et d\'emballages alimentaires de premier choix depuis plus de 30 ans. Une double expertise pour servir chaque besoin industriel.',
+      exploreBtn: 'Explorer nos marques',
+      legacyBtn: 'Notre Héritage',
+      precisionTitle: 'Conçu avec Précision, Qualité Éprouvée.',
+      precisionDesc: 'Avec plus de trois décennies d\'expérience dans l\'industrie, Tunisie Tape est un pilier de fiabilité. Notre engagement envers l\'innovation continue garantit que chaque rouleau répond aux normes internationales.',
+      missionLink: 'En savoir plus sur notre mission',
+      commitmentTitle1: 'Deux marques. ',
+      commitmentHighlight: 'Un seul engagement',
+      commitmentTitle2: ' envers l\'excellence.'
+    },
+    about: {
+      isoBadge: 'Certifié ISO 9001 - Excellence Garantie',
+      title: 'Notre Héritage & ',
+      titleHighlight: 'Mission',
+      subtitle: 'Depuis plus de 30 ans, Tunisie Tape conçoit des solutions adhésives industrielles de premier choix, établissant une relation de confiance et d\'innovation à travers les marchés mondiaux.',
+      missionTitle: 'Notre Mission',
+      missionDesc: 'Fournir des solutions adhésives et d\'emballage de haute qualité, répondant aux exigences rigoureuses de l\'industrie grâce à l\'innovation, l\'expertise et un engagement inébranlable envers la satisfaction client.',
+      visionTitle: 'Notre Vision',
+      visionDesc: 'Devenir le leader incontesté et la référence mondiale en matière de solutions d\'emballage industriel et alimentaire, en repoussant constamment les limites de la performance et de la durabilité.',
+      sitesTitle: 'Nos Sites',
+      sitesSubtitle: 'Une présence stratégique pour répondre efficacement à vos besoins à travers tout le territoire et à l\'international.',
+      sfaxBadge: 'Siège & Production',
+      sfaxTitle: 'Sfax',
+      sfaxDesc: 'Notre centre d\'opérations principal abritant la fabrication de pointe, la recherche et le contrôle qualité.',
+      tunisBadge: 'Dépôt Commercial',
+      tunisTitle: 'Tunis',
+      tunisDesc: 'Carrefour de distribution de la capitale, assurant une logistique rapide pour nos partenaires nord-tunisiens.',
+      msakenBadge: 'Dépôt Commercial',
+      msakenTitle: 'Msaken',
+      msakenDesc: 'Plateforme logistique centrale pour soutenir notre clientèle industrielle dans le sahel tunisien.',
+      viewMap: 'Voir sur la carte',
+      viewPhoto: 'Voir la photo'
+    },
+    brands: {
+      badge: 'Portfolio de Marques',
+      title: 'Nos Marques & Produits',
+      subtitle: 'Découvrez nos deux marques spécialisées conçues pour répondre aux normes industrielles et alimentaires les plus élevées.',
+      statBrands: 'Marques Stratégiques',
+      statCategories: 'Catégories de Produits',
+      statFood: 'Sécurité Alimentaire',
+      statPrinting: 'Impression sur Mesure',
+      all: 'Tout',
+      tapes: 'Rubans Adhésifs',
+      packaging: 'Emballages',
+      kitchen: 'Produits Cuisine',
+      specifications: 'Spécifications Techniques',
+      features: 'Caractéristiques Clés',
+      requestQuote: 'Demander un Devis',
+      viewDetails: 'Voir les Détails',
+      backToAll: 'Retour à tous les produits',
+      adproDesc: 'Notre marque phare de rubans adhésifs industriels et de films étirables à haute résistance, conçue pour la logistique lourde, la fabrication et les applications professionnelles.',
+      twistDesc: 'Notre gamme d\'emballages et de produits de cuisine de qualité supérieure, conçue pour les professionnels de la gastronomie et un usage domestique exigeant. Certifiée apte au contact alimentaire.',
+      specName: 'Caractéristique',
+      specValue: 'Valeur'
+    },
+    contact: {
+      title: 'Entrer en ',
+      titleHighlight: 'Contact',
+      subtitle: 'Que vous ayez une question sur nos solutions adhésives industrielles ou que vous ayez besoin d\'un devis personnalisé, notre équipe est prête à vous aider.',
+      formHeading: 'Envoyez-nous un Message',
+      fullName: 'Nom Complet',
+      fullNamePlaceholder: 'Jean Dupont',
+      emailAddress: 'Adresse E-mail',
+      emailPlaceholder: 'jean.dupont@entreprise.com',
+      subject: 'Sujet',
+      subjectPlaceholder: 'Comment pouvons-nous vous aider ?',
+      message: 'Message',
+      messagePlaceholder: 'Décrivez votre demande...',
+      sendBtn: 'Envoyer le Message',
+      successHeading: 'Message Reçu',
+      successDesc: 'Merci de nous avoir contactés. Nous reviendrons vers vous dans les plus brefs délais.',
+      directContact: 'Contact Direct',
+      phone: 'Téléphone',
+      commercial: 'Demandes Commerciales',
+      sfaxHeadquarters: 'Siège Social Sfax',
+      sfaxAddress: 'Siège & Production\nRoute de Mahdia Km 10',
+      tunisBranch: 'Succursale Tunis',
+      tunisAddress: 'Dépôt Commercial',
+      msakenFacility: 'Dépôt Msaken',
+      msakenAddress: 'Dépôt Commercial'
+    },
+    footer: {
+      legal: 'Mentions Légales',
+      privacy: 'Politique de Confidentialité',
+      terms: 'Conditions d\'Utilisation',
+      solutions: 'Nos Solutions',
+      indSol: 'Solutions Industrielles',
+      foodPack: 'Emballage Alimentaire',
+      quickContact: 'Contact Rapide',
+      emailPlaceholder: 'Votre E-mail',
+      helpPlaceholder: 'Comment pouvons-nous vous aider ?',
+      sendBtn: 'Envoyer',
+      successState: 'Message Envoyé !',
+      allRights: 'Tous droits réservés.'
+    }
+  },
+  en: {
+    nav: {
+      home: 'Home',
+      about: 'About',
+      brands: 'Brands',
+      contact: 'Contact',
+      getQuote: 'Get Quote'
+    },
+    home: {
+      heroBadge: 'Industrial & Food Packaging Excellence',
+      heroTitleText1: 'Performance You Can ',
+      heroTitleHighlight: 'Rely On',
+      heroTitleText2: ', Anywhere.',
+      heroSubtitle: 'Engineering superior adhesive solutions and premium food packaging for over 30 years. A dual-brand expertise to serve every industrial need.',
+      exploreBtn: 'Explore Brands',
+      legacyBtn: 'Our Legacy',
+      precisionTitle: 'Precision Crafted, Proven Quality.',
+      precisionDesc: 'With over three decades of industry experience, Tunisie Tape stands as a pillar of reliability. Our commitment to continuous innovation ensures every roll meets international standards.',
+      missionLink: 'Learn more about our mission',
+      commitmentTitle1: 'Two brands. ',
+      commitmentHighlight: 'One commitment',
+      commitmentTitle2: ' to excellence.'
+    },
+    about: {
+      isoBadge: 'ISO 9001 Certified Excellence',
+      title: 'Our Legacy & ',
+      titleHighlight: 'Mission',
+      subtitle: 'For over 30 years, Tunisie Tape has engineered premium industrial adhesive solutions, building a foundation of high-trust reliability and authoritative innovation across global markets.',
+      missionTitle: 'Notre Mission',
+      missionDesc: 'Provide high-quality adhesive and packaging solutions that meet the rigorous demands of the industry through innovation, expertise, and an unwavering commitment to customer satisfaction.',
+      visionTitle: 'Notre Vision',
+      visionDesc: 'Become the undisputed leader and global reference in industrial and food packaging solutions, constantly pushing the boundaries of performance and sustainability.',
+      sitesTitle: 'Nos Sites',
+      sitesSubtitle: 'A strategic presence to efficiently meet your needs across the entire territory and internationally.',
+      sfaxBadge: 'Siège & Production',
+      sfaxTitle: 'Sfax',
+      sfaxDesc: 'Our main operations center housing advanced manufacturing, research, and quality control.',
+      tunisBadge: 'Dépôt Commercial',
+      tunisTitle: 'Tunis',
+      tunisDesc: 'Capital distribution hub, ensuring rapid logistics for our north Tunisian partners.',
+      msakenBadge: 'Dépôt Commercial',
+      msakenTitle: 'Msaken',
+      msakenDesc: 'Central logistics platform to support our industrial clientele in the Tunisian Sahel.',
+      viewMap: 'Show on Map',
+      viewPhoto: 'Show Photo'
+    },
+    brands: {
+      badge: 'Brand Portfolio',
+      title: 'Our Brands & Products',
+      subtitle: 'Discover our two specialized brands designed to meet the highest industrial and food-grade safety standards.',
+      statBrands: 'Strategic Brands',
+      statCategories: 'Product Categories',
+      statFood: 'Food Grade Safeness',
+      statPrinting: 'Custom Printing & Sizes',
+      all: 'All',
+      tapes: 'Adhesive Tapes',
+      packaging: 'Packaging Films & Trays',
+      kitchen: 'Kitchen Essentials',
+      specifications: 'Technical Specifications',
+      features: 'Key Features',
+      requestQuote: 'Request a Quote',
+      viewDetails: 'View Details',
+      backToAll: 'Back to All Products',
+      adproDesc: 'Our flagship brand of industrial adhesive tapes and high-resistance stretch films, engineered for heavy logistics, manufacturing, and professional applications.',
+      twistDesc: 'Our range of premium food-grade packaging and kitchen consumables, designed for gastronomy professionals and demanding household use. Fully certified food safe.',
+      specName: 'Specification Name',
+      specValue: 'Value'
+    },
+    contact: {
+      title: 'Get in ',
+      titleHighlight: 'Touch',
+      subtitle: 'Whether you have a question about our industrial adhesive solutions or need a custom quote, our team is ready to assist you.',
+      formHeading: 'Send us a Message',
+      fullName: 'Full Name',
+      fullNamePlaceholder: 'John Doe',
+      emailAddress: 'Email Address',
+      emailPlaceholder: 'john@company.com',
+      subject: 'Subject',
+      subjectPlaceholder: 'How can we help?',
+      message: 'Message',
+      messagePlaceholder: 'Describe your inquiry...',
+      sendBtn: 'Send Message',
+      successHeading: 'Message Received',
+      successDesc: 'Thank you for reaching out. We will get back to you shortly.',
+      directContact: 'Direct Contact',
+      phone: 'Phone',
+      commercial: 'Commercial Inquiries',
+      sfaxHeadquarters: 'Sfax Headquarters',
+      sfaxAddress: 'Siège & Production\nRoute de Mahdia Km 10',
+      tunisBranch: 'Tunis Branch',
+      tunisAddress: 'Dépôt Commercial',
+      msakenFacility: 'Msaken Facility',
+      msakenAddress: 'Dépôt Commercial'
+    },
+    footer: {
+      legal: 'Legal',
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Service',
+      solutions: 'Solutions',
+      indSol: 'Industrial Solutions',
+      foodPack: 'Food Packaging',
+      quickContact: 'Quick Contact',
+      emailPlaceholder: 'Your Email',
+      helpPlaceholder: 'How can we help?',
+      sendBtn: 'Send Message',
+      successState: 'Message Sent!',
+      allRights: 'All rights reserved.'
+    }
+  }
+};

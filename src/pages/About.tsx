@@ -1,9 +1,22 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
+import { useLanguage } from '../context/LanguageContext';
+import aboutHero from '../assets/about_hero.png';
 
 export default function About() {
+  const { t } = useLanguage();
+  const [showMap, setShowMap] = useState<Record<string, boolean>>({});
+
+  const toggleMap = (siteId: string) => {
+    setShowMap(prev => ({
+      ...prev,
+      [siteId]: !prev[siteId]
+    }));
+  };
+
   const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+    hidden: { opacity: 0, y: 30, filter: 'blur(4px)' },
+    visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
   };
 
   const staggerContainer = {
@@ -11,7 +24,7 @@ export default function About() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
   };
@@ -28,23 +41,27 @@ export default function About() {
             >
                <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-surface-container text-on-surface-variant px-4 py-1.5 rounded-full font-label-sm text-label-sm mb-6 border border-border-muted shadow-sm">
                 <span className="material-symbols-outlined text-[16px] text-primary">workspace_premium</span>
-                ISO 9001 Certified Excellence
+                {t('about.isoBadge')}
               </motion.div>
               <motion.h1 variants={fadeInUp} className="font-display-lg text-display-lg text-on-surface mb-6">
-                Our Legacy & <span className="text-primary">Mission</span>
+                {t('about.title')}
+                <span className="text-primary">{t('about.titleHighlight')}</span>
               </motion.h1>
               <motion.p variants={fadeInUp} className="font-body-lg text-body-lg text-on-surface-variant mb-8 leading-relaxed">
-                For over 30 years, Tunisie Tape has engineered premium industrial adhesive solutions, building a foundation of high-trust reliability and authoritative innovation across global markets.
+                {t('about.subtitle')}
               </motion.p>
             </motion.div>
             
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="relative rounded-lg overflow-hidden border border-border-muted shadow-subtle aspect-[4/3]"
+              initial={{ opacity: 0, scale: 0.95, clipPath: 'inset(10% 10% 10% 10% round 10px)' }}
+              animate={{ opacity: 1, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 10px)' }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="relative overflow-hidden border border-border-muted shadow-subtle aspect-[4/3] group"
             >
-              <img alt="Tape Rolls" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHGkaQvrSJiFghEHNEUMTYgHwkBsV3wee1KdEXpTIN2N51EcbtWHl6UH-y98XSrU7mccvSbq5s08auTEaM5kbbGA8o7hVVOhGyrJSIGcH4uEkUXtTA2kjS_NLxMulbogKd2zJxQU2RJ8AKjiEIG4J4G6bst8z_l27NWeS8wNlf94-RmDtgp9c1tRMog1WIMYMarkGVL5nWbF-lpWfquK4DCb5GsB69LBfG09Sw0tJ0mg2zHtjT8H0FwE5Ik_yYUrUzh3_0UO_7Mfyp" />
+              <motion.img 
+                whileHover={{ scale: 1.08 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                alt="Tape Rolls" className="w-full h-full object-cover" src={aboutHero} />
             </motion.div>
           </div>
         </div>
@@ -60,24 +77,24 @@ export default function About() {
             variants={staggerContainer}
           >
             {/* Mission Card */}
-            <motion.div variants={fadeInUp} className="bg-surface-container-lowest p-10 rounded-2xl border border-border-muted shadow-subtle flex flex-col items-start gap-6 hover:shadow-md transition-shadow">
+            <motion.div variants={fadeInUp} whileHover={{ y: -8, transition: { duration: 0.3 } }} className="bg-surface-container-lowest p-10 rounded-2xl border border-border-muted shadow-subtle flex flex-col items-start gap-6 hover:shadow-lg transition-shadow">
                <div className="w-14 h-14 bg-primary/10 text-primary rounded-xl flex items-center justify-center">
                   <span className="material-symbols-outlined text-3xl">flag</span>
                </div>
-               <h3 className="font-headline-xl text-headline-xl text-on-surface">Notre Mission</h3>
+               <h3 className="font-headline-xl text-headline-xl text-on-surface">{t('about.missionTitle')}</h3>
                <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                 Fournir des solutions adhésives et d'emballage de haute qualité, répondant aux exigences rigoureuses de l'industrie grâce à l'innovation, l'expertise et un engagement inébranlable envers la satisfaction client.
+                 {t('about.missionDesc')}
                </p>
             </motion.div>
 
             {/* Vision Card */}
-            <motion.div variants={fadeInUp} className="bg-surface-container-lowest p-10 rounded-2xl border border-border-muted shadow-subtle flex flex-col items-start gap-6 hover:shadow-md transition-shadow">
+            <motion.div variants={fadeInUp} whileHover={{ y: -8, transition: { duration: 0.3 } }} className="bg-surface-container-lowest p-10 rounded-2xl border border-border-muted shadow-subtle flex flex-col items-start gap-6 hover:shadow-lg transition-shadow">
                <div className="w-14 h-14 bg-secondary/10 text-secondary rounded-xl flex items-center justify-center">
                   <span className="material-symbols-outlined text-3xl">visibility</span>
                </div>
-               <h3 className="font-headline-xl text-headline-xl text-on-surface">Notre Vision</h3>
+               <h3 className="font-headline-xl text-headline-xl text-on-surface">{t('about.visionTitle')}</h3>
                <p className="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
-                 Devenir le leader incontesté et la référence mondiale en matière de solutions d'emballage industriel et alimentaire, en repoussant constamment les limites de la performance et de la durabilité.
+                 {t('about.visionDesc')}
                </p>
             </motion.div>
           </motion.div>
@@ -94,9 +111,9 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeInUp}
           >
-            <h2 className="font-display-lg text-display-lg text-on-surface mb-6">Nos Sites</h2>
+            <h2 className="font-display-lg text-display-lg text-on-surface mb-6">{t('about.sitesTitle')}</h2>
             <p className="font-body-lg text-body-lg text-on-surface-variant">
-              Une présence stratégique pour répondre efficacement à vos besoins à travers tout le territoire et à l'international.
+              {t('about.sitesSubtitle')}
             </p>
           </motion.div>
 
@@ -108,54 +125,138 @@ export default function About() {
             variants={staggerContainer}
           >
             {/* Sfax */}
-            <motion.div variants={fadeInUp} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface">
-              <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
-                 <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeL9FDEh3BvheWFuZEuVmxgrkQsajD8s-9W_B-qO-RtFZJr6G6busG3K8lolw9yQYkZ26f8_4CXLyo9rA5w1_6rgiuY4M8noYzupCsbByP0vo-dnhLzUFElUw2lVhGjN5GXks9G9pV8L5lucnD4Y_fzUZ-EXDG08i9Dki6NhnEC7rz4p9z0mBR2ypy77sln2YS3EvpiuuvXLHI6cUDmP4r2UQfD5rXalT3Hk8sbUagEVxqnR6IvP0YYEY8rROtzwVsSzJfOVHx_Tyr" alt="Sfax Manufacturing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                 <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                    Siège & Production
-                 </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">Sfax</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  Notre centre d'opérations principal abritant la fabrication de pointe, la recherche et le contrôle qualité.
-                </p>
-              </div>
+            <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
+               <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
+                  {showMap['sfax'] ? (
+                     <iframe
+                       src="https://maps.google.com/maps?q=Zone%20Industrielle%20Poudri%C3%A8re%201%2C%203018%20Sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       className="w-full h-full border-0"
+                       allowFullScreen
+                       loading="lazy"
+                       title="Sfax Location Map"
+                     ></iframe>
+                  ) : (
+                     <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" alt="Sfax Manufacturing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  )}
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted z-10">
+                     <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                     {t('about.sfaxBadge')}
+                  </div>
+                  <button
+                    onClick={() => toggleMap('sfax')}
+                    className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-1.5 bg-surface-container-lowest/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-label-sm font-label-sm text-on-surface border border-border-muted shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 active:scale-95"
+                  >
+                     <span className="material-symbols-outlined text-[16px]">
+                       {showMap['sfax'] ? 'photo' : 'map'}
+                     </span>
+                     {showMap['sfax'] ? t('about.viewPhoto') : t('about.viewMap')}
+                  </button>
+               </div>
+               <div className="p-6">
+                 <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.sfaxTitle')}</h3>
+                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4">
+                   {t('about.sfaxDesc')}
+                 </p>
+                 <a 
+                   href="https://maps.google.com/?q=Zone+Industrielle+Poudri%C3%A8re+1%2C+3018+Sfax" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
+                 >
+                   <span className="material-symbols-outlined text-[16px]">directions</span>
+                   Directions (Google Maps)
+                 </a>
+               </div>
             </motion.div>
 
             {/* Tunis */}
-            <motion.div variants={fadeInUp} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface">
-              <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
-                 <img src="https://images.unsplash.com/photo-1577700588691-628d68962c0b" alt="Tunis Branch" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 blur-[2px] brightness-75" />
-                 <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    Dépôt Commercial
-                 </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">Tunis</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  Carrefour de distribution de la capitale, assurant une logistique rapide pour nos partenaires nord-tunisiens.
-                </p>
-              </div>
+            <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
+               <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
+                  {showMap['tunis'] ? (
+                     <iframe
+                       src="https://maps.google.com/maps?q=Avenue%20Mustapha%20Mohsen%2C%20Borj%20Louzir%2C%20Ariana%2C%20Tunis&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       className="w-full h-full border-0"
+                       allowFullScreen
+                       loading="lazy"
+                       title="Tunis Branch Map"
+                     ></iframe>
+                  ) : (
+                     <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Tunis Branch" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  )}
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted z-10">
+                     <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                     {t('about.tunisBadge')}
+                  </div>
+                  <button
+                    onClick={() => toggleMap('tunis')}
+                    className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-1.5 bg-surface-container-lowest/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-label-sm font-label-sm text-on-surface border border-border-muted shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 active:scale-95"
+                  >
+                     <span className="material-symbols-outlined text-[16px]">
+                       {showMap['tunis'] ? 'photo' : 'map'}
+                     </span>
+                     {showMap['tunis'] ? t('about.viewPhoto') : t('about.viewMap')}
+                  </button>
+               </div>
+               <div className="p-6">
+                 <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.tunisTitle')}</h3>
+                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4">
+                   {t('about.tunisDesc')}
+                 </p>
+                 <a 
+                   href="https://maps.google.com/?q=Avenue+Mustapha+Mohsen%2C+Borj+Louzir%2C+Ariana%2C+Tunis" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
+                 >
+                   <span className="material-symbols-outlined text-[16px]">directions</span>
+                   Directions (Google Maps)
+                 </a>
+               </div>
             </motion.div>
 
             {/* Msaken */}
-            <motion.div variants={fadeInUp} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface">
-              <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
-                 <img src="https://images.unsplash.com/photo-1555626906-fcf10d6851b4" alt="Msaken Facility" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 blur-[2px] brightness-75" />
-                 <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted">
-                    <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
-                    Dépôt Commercial
-                 </div>
-              </div>
-              <div className="p-6">
-                <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">Msaken</h3>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">
-                  Plateforme logistique centrale pour soutenir notre clientèle industrielle dans le sahel tunisien.
-                </p>
-              </div>
+            <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
+               <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
+                  {showMap['msaken'] ? (
+                     <iframe
+                       src="https://maps.google.com/maps?q=Route%20de%20Kairouan%2C%20Avenue%20Boujnah%2C%20Msaken%204070%2C%20Sousse&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       className="w-full h-full border-0"
+                       allowFullScreen
+                       loading="lazy"
+                       title="Msaken Facility Map"
+                     ></iframe>
+                  ) : (
+                     <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Msaken Facility" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  )}
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted z-10">
+                     <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                     {t('about.msakenBadge')}
+                  </div>
+                  <button
+                    onClick={() => toggleMap('msaken')}
+                    className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-1.5 bg-surface-container-lowest/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-label-sm font-label-sm text-on-surface border border-border-muted shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 active:scale-95"
+                  >
+                     <span className="material-symbols-outlined text-[16px]">
+                       {showMap['msaken'] ? 'photo' : 'map'}
+                     </span>
+                     {showMap['msaken'] ? t('about.viewPhoto') : t('about.viewMap')}
+                  </button>
+               </div>
+               <div className="p-6">
+                 <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.msakenTitle')}</h3>
+                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4">
+                   {t('about.msakenDesc')}
+                 </p>
+                 <a 
+                   href="https://maps.google.com/?q=Route+de+Kairouan%2C+Avenue+Boujnah%2C+Msaken+4070%2C+Sousse" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
+                 >
+                   <span className="material-symbols-outlined text-[16px]">directions</span>
+                   Directions (Google Maps)
+                 </a>
+               </div>
             </motion.div>
           </motion.div>
         </div>

@@ -1,20 +1,57 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { motion } from 'motion/react';
+import { useSearchParams } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  const productParam = searchParams.get('product');
+  const specParam = searchParams.get('spec');
+  const { language, t } = useLanguage();
+
+  const [fullName, setFullName] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (productParam) {
+      if (language === 'fr') {
+        setSubject(`Demande de Devis : ${productParam}`);
+        let msg = `Bonjour l'équipe Tunisie Tape,\n\nJe souhaite obtenir un devis de prix et des échantillons pour le produit suivant :\n- Produit : ${productParam}`;
+        if (specParam) {
+          msg += `\n- Dimension / Spécification : ${specParam}`;
+        }
+        msg += `\n\nVeuillez m'indiquer vos tarifs et conditions de livraison.\n\nCordialement,`;
+        setMessage(msg);
+      } else {
+        setSubject(`Quote Request: ${productParam}`);
+        let msg = `Hello Tunisie Tape Team,\n\nI would like to request a price quote and samples for the following product:\n- Product: ${productParam}`;
+        if (specParam) {
+          msg += `\n- Sizing/Specification: ${specParam}`;
+        }
+        msg += `\n\nPlease let me know the pricing and delivery terms.\n\nBest regards,`;
+        setMessage(msg);
+      }
+    }
+  }, [productParam, specParam, language]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setIsFormSubmitted(true);
+    setFullName('');
+    setEmailAddress('');
+    setSubject('');
+    setMessage('');
     setTimeout(() => {
       setIsFormSubmitted(false);
     }, 4000);
   };
 
   const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+    hidden: { opacity: 0, y: 30, filter: 'blur(4px)' },
+    visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
   };
 
   const staggerContainer = {
@@ -22,7 +59,7 @@ export default function Contact() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.15
       }
     }
   };
@@ -38,10 +75,11 @@ export default function Contact() {
             className="mb-16"
           >
             <motion.h1 variants={fadeInUp} className="font-display-lg text-display-lg text-on-surface mb-6">
-              Get in <span className="text-primary">Touch</span>
+              {t('contact.title')}
+              <span className="text-primary">{t('contact.titleHighlight')}</span>
             </motion.h1>
             <motion.p variants={fadeInUp} className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-              Whether you have a question about our industrial adhesive solutions or need a custom quote, our team is ready to assist you.
+              {t('contact.subtitle')}
             </motion.p>
           </motion.div>
 
@@ -54,61 +92,71 @@ export default function Contact() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <h2 className="font-headline-lg text-headline-lg text-on-surface mb-8">Send us a Message</h2>
+              <h2 className="font-headline-lg text-headline-lg text-on-surface mb-8">{t('contact.formHeading')}</h2>
               
               {isFormSubmitted ? (
                  <div className="bg-status-success/10 border border-status-success/30 rounded-xl p-8 text-center flex flex-col items-center justify-center min-h-[400px]">
                     <div className="w-16 h-16 bg-status-success text-white rounded-full flex items-center justify-center mb-6">
                       <span className="material-symbols-outlined text-4xl">check</span>
                     </div>
-                    <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">Message Received</h3>
-                    <p className="font-body-md text-body-md text-on-surface-variant">Thank you for reaching out. We will get back to you shortly.</p>
+                    <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('contact.successHeading')}</h3>
+                    <p className="font-body-md text-body-md text-on-surface-variant">{t('contact.successDesc')}</p>
                  </div>
               ) : (
                 <form className="space-y-6" onSubmit={handleSubmit}>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="fullName">Full Name</label>
+                      <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="fullName">{t('contact.fullName')}</label>
                       <input 
                         required id="fullName" type="text"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
                         className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
-                        placeholder="John Doe"
+                        placeholder={t('contact.fullNamePlaceholder')}
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="emailAddress">Email Address</label>
+                      <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="emailAddress">{t('contact.emailAddress')}</label>
                       <input 
                         required id="emailAddress" type="email"
+                        value={emailAddress}
+                        onChange={(e) => setEmailAddress(e.target.value)}
                         className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
-                        placeholder="john@company.com"
+                        placeholder={t('contact.emailPlaceholder')}
                       />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="subject">Subject</label>
+                    <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="subject">{t('contact.subject')}</label>
                     <input 
                       required id="subject" type="text"
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
                       className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
-                      placeholder="How can we help?"
+                      placeholder={t('contact.subjectPlaceholder')}
                     />
                   </div>
 
                   <div className="space-y-2">
-                    <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="message">Message</label>
+                    <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="message">{t('contact.message')}</label>
                     <textarea 
                       required id="message" rows={5}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-y"
-                      placeholder="Describe your inquiry..."
+                      placeholder={t('contact.messagePlaceholder')}
                     ></textarea>
                   </div>
 
-                  <button 
+                  <motion.button 
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full sm:w-auto bg-primary hover:bg-primary-container text-on-primary px-10 py-4 rounded-lg font-label-md text-label-md transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:scale-[1.02] shadow-sm flex items-center justify-center gap-2"
+                    className="w-full sm:w-auto bg-primary hover:bg-primary-container text-on-primary px-10 py-4 rounded-lg font-label-md text-label-md transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-sm flex items-center justify-center gap-2 cursor-pointer"
                   >
-                    Send Message <span className="material-symbols-outlined text-[18px]">send</span>
-                  </button>
+                    {t('contact.sendBtn')} <span className="material-symbols-outlined text-[18px]">send</span>
+                  </motion.button>
                 </form>
               )}
             </motion.div>
@@ -124,13 +172,13 @@ export default function Contact() {
                 {/* Decorative blob */}
                 <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
                 
-                <h3 className="font-headline-lg text-headline-lg mb-6 relative z-10">Direct Contact</h3>
+                <h3 className="font-headline-lg text-headline-lg mb-6 relative z-10">{t('contact.directContact')}</h3>
                 
                 <div className="space-y-6 relative z-10">
                   <div className="flex gap-4 items-start">
                      <span className="material-symbols-outlined mt-1 text-on-primary/80">call</span>
                      <div>
-                       <p className="font-label-sm text-label-sm text-on-primary/70 mb-1">Phone</p>
+                       <p className="font-label-sm text-label-sm text-on-primary/70 mb-1">{t('contact.phone')}</p>
                        <p className="font-body-lg text-body-lg">+216 74 287 222</p>
                      </div>
                   </div>
@@ -138,7 +186,7 @@ export default function Contact() {
                   <div className="flex gap-4 items-start">
                      <span className="material-symbols-outlined mt-1 text-on-primary/80">mail</span>
                      <div>
-                       <p className="font-label-sm text-label-sm text-on-primary/70 mb-1">Commercial Inquiries</p>
+                       <p className="font-label-sm text-label-sm text-on-primary/70 mb-1">{t('contact.commercial')}</p>
                        <p className="font-body-lg text-body-lg break-all">commercial@tunisietape.com</p>
                      </div>
                   </div>
@@ -147,35 +195,35 @@ export default function Contact() {
 
               {/* Locations */}
               <div className="grid gap-4">
-                <div className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4">
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
                   <div className="text-primary mt-0.5">
                     <span className="material-symbols-outlined">location_city</span>
                   </div>
                   <div>
-                    <h4 className="font-label-md text-label-md text-on-surface mb-1">Sfax Headquarters</h4>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">Siège & Production<br/>Route de Mahdia Km 10</p>
+                    <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.sfaxHeadquarters')}</h4>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.sfaxAddress')}</p>
                   </div>
-                </div>
+                </motion.div>
                 
-                <div className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4">
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
                   <div className="text-secondary mt-0.5">
                     <span className="material-symbols-outlined">storefront</span>
                   </div>
                   <div>
-                    <h4 className="font-label-md text-label-md text-on-surface mb-1">Tunis Branch</h4>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">Dépôt Commercial</p>
+                    <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.tunisBranch')}</h4>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.tunisAddress')}</p>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4">
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
                   <div className="text-secondary mt-0.5">
                     <span className="material-symbols-outlined">warehouse</span>
                   </div>
                   <div>
-                    <h4 className="font-label-md text-label-md text-on-surface mb-1">Msaken Facility</h4>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant">Dépôt Commercial</p>
+                    <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.msakenFacility')}</h4>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.msakenAddress')}</p>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
             </motion.div>
