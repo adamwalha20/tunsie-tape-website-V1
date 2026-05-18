@@ -2,7 +2,7 @@ export interface TranslationSchema {
   nav: {
     home: string;
     about: string;
-    brands: string;
+    products: string;
     contact: string;
     getQuote: string;
   };
@@ -44,7 +44,7 @@ export interface TranslationSchema {
     viewMap: string;
     viewPhoto: string;
   };
-  brands: {
+  products: {
     badge: string;
     title: string;
     subtitle: string;
@@ -113,7 +113,7 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
     nav: {
       home: 'Accueil',
       about: 'À Propos',
-      brands: 'Marques',
+      products: 'Produits',
       contact: 'Contact',
       getQuote: 'Obtenir un Devis'
     },
@@ -123,12 +123,12 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       heroTitleHighlight: 'Compter',
       heroTitleText2: ', Partout.',
       heroSubtitle: 'Conception de solutions adhésives supérieures et d\'emballages alimentaires de premier choix depuis plus de 30 ans. Une double expertise pour servir chaque besoin industriel.',
-      exploreBtn: 'Explorer nos marques',
+      exploreBtn: 'Explorer nos catégories',
       legacyBtn: 'Notre Héritage',
       precisionTitle: 'Conçu avec Précision, Qualité Éprouvée.',
       precisionDesc: 'Avec plus de trois décennies d\'expérience dans l\'industrie, Tunisie Tape est un pilier de fiabilité. Notre engagement envers l\'innovation continue garantit que chaque rouleau répond aux normes internationales.',
       missionLink: 'En savoir plus sur notre mission',
-      commitmentTitle1: 'Deux marques. ',
+      commitmentTitle1: 'Deux gammes de produits. ',
       commitmentHighlight: 'Un seul engagement',
       commitmentTitle2: ' envers l\'excellence.'
     },
@@ -155,12 +155,12 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       viewMap: 'Voir sur la carte',
       viewPhoto: 'Voir la photo'
     },
-    brands: {
-      badge: 'Portfolio de Marques',
-      title: 'Nos Marques & Produits',
-      subtitle: 'Découvrez nos deux marques spécialisées conçues pour répondre aux normes industrielles et alimentaires les plus élevées.',
-      statBrands: 'Marques Stratégiques',
-      statCategories: 'Catégories de Produits',
+    products: {
+      badge: 'Portfolio de Produits',
+      title: 'Nos Produits',
+      subtitle: 'Découvrez nos solutions d\'emballage et adhésifs conçus pour répondre aux normes industrielles et alimentaires les plus élevées.',
+      statBrands: 'Catégories Clés',
+      statCategories: 'Produits Spécialisés',
       statFood: 'Sécurité Alimentaire',
       statPrinting: 'Impression sur Mesure',
       all: 'Tout',
@@ -172,7 +172,7 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       requestQuote: 'Demander un Devis',
       viewDetails: 'Voir les Détails',
       backToAll: 'Retour à tous les produits',
-      adproDesc: 'Notre marque phare de rubans adhésifs industriels et de films étirables à haute résistance, conçue pour la logistique lourde, la fabrication et les applications professionnelles.',
+      adproDesc: 'Notre gamme de rubans adhésifs industriels et de films étirables à haute résistance, conçue pour la logistique lourde, la fabrication et les applications professionnelles.',
       twistDesc: 'Notre gamme d\'emballages et de produits de cuisine de qualité supérieure, conçue pour les professionnels de la gastronomie et un usage domestique exigeant. Certifiée apte au contact alimentaire.',
       specName: 'Caractéristique',
       specValue: 'Valeur'
@@ -222,7 +222,7 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
     nav: {
       home: 'Home',
       about: 'About',
-      brands: 'Brands',
+      products: 'Products',
       contact: 'Contact',
       getQuote: 'Get Quote'
     },
@@ -231,13 +231,13 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       heroTitleText1: 'Performance You Can ',
       heroTitleHighlight: 'Rely On',
       heroTitleText2: ', Anywhere.',
-      heroSubtitle: 'Engineering superior adhesive solutions and premium food packaging for over 30 years. A dual-brand expertise to serve every industrial need.',
-      exploreBtn: 'Explore Brands',
+      heroSubtitle: 'Engineering superior adhesive solutions and premium food packaging for over 30 years. Double expertise to serve every industrial need.',
+      exploreBtn: 'Explore Categories',
       legacyBtn: 'Our Legacy',
       precisionTitle: 'Precision Crafted, Proven Quality.',
       precisionDesc: 'With over three decades of industry experience, Tunisie Tape stands as a pillar of reliability. Our commitment to continuous innovation ensures every roll meets international standards.',
       missionLink: 'Learn more about our mission',
-      commitmentTitle1: 'Two brands. ',
+      commitmentTitle1: 'Two product ranges. ',
       commitmentHighlight: 'One commitment',
       commitmentTitle2: ' to excellence.'
     },
@@ -264,12 +264,12 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       viewMap: 'Show on Map',
       viewPhoto: 'Show Photo'
     },
-    brands: {
-      badge: 'Brand Portfolio',
-      title: 'Our Brands & Products',
-      subtitle: 'Discover our two specialized brands designed to meet the highest industrial and food-grade safety standards.',
-      statBrands: 'Strategic Brands',
-      statCategories: 'Product Categories',
+    products: {
+      badge: 'Product Portfolio',
+      title: 'Our Products',
+      subtitle: 'Discover our premium packaging and adhesive products designed to meet the highest industrial and food-grade safety standards.',
+      statBrands: 'Key Categories',
+      statCategories: 'Specialty Products',
       statFood: 'Food Grade Safeness',
       statPrinting: 'Custom Printing & Sizes',
       all: 'All',
@@ -281,7 +281,7 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       requestQuote: 'Request a Quote',
       viewDetails: 'View Details',
       backToAll: 'Back to All Products',
-      adproDesc: 'Our flagship brand of industrial adhesive tapes and high-resistance stretch films, engineered for heavy logistics, manufacturing, and professional applications.',
+      adproDesc: 'Our premium range of industrial adhesive tapes and high-resistance stretch films, engineered for heavy logistics, manufacturing, and professional applications.',
       twistDesc: 'Our range of premium food-grade packaging and kitchen consumables, designed for gastronomy professionals and demanding household use. Fully certified food safe.',
       specName: 'Specification Name',
       specValue: 'Value'

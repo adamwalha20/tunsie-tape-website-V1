@@ -39,8 +39,8 @@ export default function Layout() {
             <Link to="/about" className={`font-label-md text-label-md transition-colors ${location.pathname === '/about' ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface-variant hover:text-primary'}`}>
               {t('nav.about')}
             </Link>
-            <Link to="/brands" className={`font-label-md text-label-md transition-colors ${location.pathname === '/brands' ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface-variant hover:text-primary'}`}>
-              {t('nav.brands')}
+            <Link to="/products" className={`font-label-md text-label-md transition-colors ${location.pathname === '/products' ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface-variant hover:text-primary'}`}>
+              {t('nav.products')}
             </Link>
             <Link to="/contact" className={`font-label-md text-label-md transition-colors ${location.pathname === '/contact' ? 'text-primary border-b-2 border-primary pb-1' : 'text-on-surface-variant hover:text-primary'}`}>
               {t('nav.contact')}
@@ -96,8 +96,8 @@ export default function Layout() {
               <Link to="/about" className={`font-label-md text-label-md block ${location.pathname === '/about' ? 'text-primary font-semibold' : 'text-on-surface-variant'}`} onClick={closeMenu}>
                 {t('nav.about')}
               </Link>
-              <Link to="/brands" className={`font-label-md text-label-md block ${location.pathname === '/brands' ? 'text-primary font-semibold' : 'text-on-surface-variant'}`} onClick={closeMenu}>
-                {t('nav.brands')}
+              <Link to="/products" className={`font-label-md text-label-md block ${location.pathname === '/products' ? 'text-primary font-semibold' : 'text-on-surface-variant'}`} onClick={closeMenu}>
+                {t('nav.products')}
               </Link>
               <Link to="/contact" className={`font-label-md text-label-md block ${location.pathname === '/contact' ? 'text-primary font-semibold' : 'text-on-surface-variant'}`} onClick={closeMenu}>
                 {t('nav.contact')}
@@ -180,8 +180,8 @@ export default function Layout() {
           <div className="md:col-span-1">
             <h4 className="text-label-md font-label-md text-on-surface mb-4">{t('footer.solutions')}</h4>
             <ul className="space-y-3">
-              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/brands">{t('footer.indSol')}</Link></li>
-              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/brands">{t('footer.foodPack')}</Link></li>
+              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/products">{t('footer.indSol')}</Link></li>
+              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/products">{t('footer.foodPack')}</Link></li>
             </ul>
           </div>
 

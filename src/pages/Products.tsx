@@ -727,7 +727,7 @@ function ProductVisual({ visualType }: { visualType: string }) {
   }
 }
 
-export default function Brands() {
+export default function Products() {
   const { language, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -804,17 +804,17 @@ export default function Brands() {
           >
             <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-primary/5 text-primary px-4 py-1.5 rounded-full font-label-sm text-label-sm mb-6 border border-primary/10 shadow-sm uppercase tracking-wider">
               <span className="material-symbols-outlined text-[16px] text-primary">verified</span>
-              {t('brands.badge')}
+              {t('products.badge')}
             </motion.div>
             <motion.h1 variants={fadeInUp} className="font-display-lg text-display-lg text-on-surface mb-6 md:text-[56px]">
               {language === 'fr' ? (
-                <>Nos Marques & <span className="text-primary">Produits</span></>
+                <>Nos <span className="text-primary">Produits</span></>
               ) : (
-                <>Our Brands & <span className="text-primary">Products</span></>
+                <>Our <span className="text-primary">Products</span></>
               )}
             </motion.h1>
             <motion.p variants={fadeInUp} className="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto leading-relaxed">
-              {t('brands.subtitle')}
+              {t('products.subtitle')}
             </motion.p>
           </motion.div>
 
@@ -827,21 +827,21 @@ export default function Brands() {
           >
             <div className="bg-surface border border-border-muted p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
               <div className="font-display-lg text-headline-xl text-primary mb-1">2</div>
-              <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('brands.statBrands')}</div>
+              <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('products.statBrands')}</div>
             </div>
             <div className="bg-surface border border-border-muted p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
               <div className="font-display-lg text-headline-xl text-primary mb-1">12+</div>
-              <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('brands.statCategories')}</div>
+              <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('products.statCategories')}</div>
             </div>
             <div className="bg-surface border border-border-muted p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
               <div className="font-display-lg text-headline-xl text-secondary mb-1">100%</div>
-              <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('brands.statFood')}</div>
+              <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('products.statFood')}</div>
             </div>
             <div className="bg-surface border border-border-muted p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
               <div className="font-display-lg text-headline-xl text-primary mb-1">
                 {language === 'fr' ? 'Sur Mesure' : 'Custom'}
               </div>
-              <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('brands.statPrinting')}</div>
+              <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('products.statPrinting')}</div>
             </div>
           </motion.div>
         </div>
@@ -861,11 +861,11 @@ export default function Brands() {
           >
             <div className="p-8 md:p-12 flex flex-col justify-center">
               <div className="text-primary font-label-md text-label-md uppercase tracking-wider mb-2">
-                {language === 'fr' ? 'Marque Haute Performance' : 'High Performance Brand'}
+                {language === 'fr' ? 'Gamme Haute Performance' : 'High Performance Range'}
               </div>
               <h2 className="font-display-lg text-headline-xl text-on-surface mb-4">ADPRO</h2>
               <p className="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
-                {t('brands.adproDesc')}
+                {t('products.adproDesc')}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-primary/5 text-primary text-[12px] font-medium px-3 py-1 rounded-full border border-primary/10">Acrylic, Solvent & Hotmelt</span>
@@ -928,7 +928,7 @@ export default function Brands() {
               </div>
               <h2 className="font-display-lg text-headline-xl text-on-surface mb-4">twist</h2>
               <p className="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
-                {t('brands.twistDesc')}
+                {t('products.twistDesc')}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-secondary/5 text-secondary text-[12px] font-medium px-3 py-1 rounded-full border border-secondary/10">100% Recyclable Foil</span>
@@ -968,8 +968,8 @@ export default function Brands() {
             {/* Category Tabs */}
             <div className="flex flex-wrap gap-2 bg-surface p-1.5 rounded-2xl border border-border-muted shadow-subtle w-full md:w-auto">
               {[
-                { id: 'all', label: t('brands.all'), icon: 'grid_view' },
-                { id: 'adpro-tapes', label: t('brands.tapes'), icon: 'layers' },
+                { id: 'all', label: t('products.all'), icon: 'grid_view' },
+                { id: 'adpro-tapes', label: t('products.tapes'), icon: 'layers' },
                 { id: 'adpro-packaging', label: language === 'fr' ? 'ADPRO Spécialités' : 'ADPRO Specialty', icon: 'package_2' },
                 { id: 'twist-food', label: language === 'fr' ? 'twist Emballages' : 'twist Food Wrap', icon: 'restaurant' }
               ].map((tab) => (
@@ -1195,7 +1195,7 @@ export default function Brands() {
                   {/* Features List */}
                   <div>
                     <h4 className="font-headline-lg text-headline-lg text-on-surface mb-4">
-                      {t('brands.features')}
+                      {t('products.features')}
                     </h4>
                     <ul className="space-y-3.5">
                       {(language === 'fr' ? selectedProduct.fr : selectedProduct.en).features.map((feature, idx) => (
@@ -1313,7 +1313,7 @@ export default function Brands() {
                         : 'bg-secondary hover:bg-secondary-container'
                     }`}
                   >
-                    {t('brands.requestQuote')}
+                    {t('products.requestQuote')}
                     <span className="material-symbols-outlined text-[18px]">shopping_cart</span>
                   </Link>
                 </div>
