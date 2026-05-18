@@ -180,8 +180,8 @@ export default function Layout() {
           <div className="md:col-span-1">
             <h4 className="text-label-md font-label-md text-on-surface mb-4">{t('footer.solutions')}</h4>
             <ul className="space-y-3">
-              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/products">{t('footer.indSol')}</Link></li>
-              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/products">{t('footer.foodPack')}</Link></li>
+              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/products?category=tapes">{t('footer.indSol')}</Link></li>
+              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/products?category=packaging">{t('footer.foodPack')}</Link></li>
             </ul>
           </div>
 

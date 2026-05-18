@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
 // Import the generated high-quality brand master images
@@ -54,7 +54,7 @@ const products: Product[] = [
     fr: {
       name: 'Rubans Adhésifs Standard',
       tagline: 'Fermeture de Carton Fiable & Haute Résistance',
-      description: 'Conçus sur un support Polypropylène (PP) hautement résistant, nos rubans standards sont étudiés pour un emballage fluide sur lignes manuelles ou automatiques. Disponibles en trois formules d\'adhésif sur mesure.',
+      description: 'Conçus sur un support Polypropylène (PP) hautement résistant, nos rubans standards sont étudiés pour un emballage fluide sur lignes manuelles ou automatiques. Disponibles en trois formules d\'adhésif personnalisées.',
       badge: 'Emballage de Base',
       features: [
         'Support PP robuste résistant aux tensions',
@@ -108,7 +108,7 @@ const products: Product[] = [
     fr: {
       name: 'Rubans Adhésifs Imprimés',
       tagline: 'Image de Marque Personnalisée & Haute Sécurité',
-      description: 'Valorisez votre marque et sécurisez vos envois en un seul geste. Nos rubans imprimés sur mesure affichent des graphismes haute résolution qui transforment chaque boîte en support publicitaire tout en signalant immédiatement toute tentative d\'effraction.',
+      description: 'Valorisez votre marque et sécurisez vos envois en un seul geste. Nos rubans imprimés personnalisés affichent des graphismes haute résolution qui transforment chaque boîte en support publicitaire tout en signalant immédiatement toute tentative d\'effraction.',
       badge: 'Marketing & Sécurité',
       features: [
         'Marquage fort avec impression haute définition jusqu\'à 2 couleurs',
@@ -500,7 +500,7 @@ const products: Product[] = [
     },
     en: {
       name: 'Aluminium Foil',
-      tagline: 'One Twist Keeps It Warm',
+      tagline: 'Keeps It Perfectly Warm',
       description: 'Highly heat-resistant aluminium foil engineered for professional catering, baking, and quick kitchen preservation. Forms an absolute barrier to lock in flavor, heat, and moisture.',
       badge: 'Kitchen Essential',
       features: [
@@ -526,7 +526,7 @@ const products: Product[] = [
     fr: {
       name: 'Film Alimentaire',
       tagline: 'Un Geste Simple Garde Frais',
-      description: 'Préservez les saveurs et bloquez l\'humidité. Le film étirable twist s\'étire exceptionnellement et adhère fermement au verre, à la céramique et aux plastiques pour former un joint hermétique protecteur.',
+      description: 'Préservez les saveurs et bloquez l\'humidité. Le film étirable s\'étire exceptionnellement et adhère fermement au verre, à la céramique et aux plastiques pour former un joint hermétique protecteur.',
       badge: 'Fraîcheur Verrouillée',
       features: [
         'Élasticité inégalée épousant parfaitement les saladiers, assiettes et ingrédients frais',
@@ -542,8 +542,8 @@ const products: Product[] = [
     },
     en: {
       name: 'Cling Film',
-      tagline: 'One Twist Keeps It Fresh',
-      description: 'Preserve flavors and lock out humidity. twist Cling Film stretches exceptionally and clings tightly to glass, ceramic, and plastics, forming a protective airtight seal to maximize freshness.',
+      tagline: 'Keeps It Perfectly Fresh',
+      description: 'Preserve flavors and lock out humidity. Our Cling Film stretches exceptionally and clings tightly to glass, ceramic, and plastics, forming a protective airtight seal to maximize freshness.',
       badge: 'Fresh Lock',
       features: [
         'Unrivaled elasticity stretches perfectly around bowls, plates, and raw ingredients',
@@ -568,7 +568,7 @@ const products: Product[] = [
     fr: {
       name: 'Papier Cuisson',
       tagline: 'Un Geste Simple Protège',
-      description: 'Le partenaire idéal des pâtissiers et cuisiniers. Le papier cuisson twist est enduit sur les deux faces d\'une couche de silicone anti-adhésive premium, résistant aux fortes températures tout en laissant glisser vos créations.',
+      description: 'Le partenaire idéal des pâtissiers et cuisiniers. Le papier cuisson est enduit sur les deux faces d\'une couche de silicone anti-adhésive premium, résistant aux fortes températures tout en laissant glisser vos créations.',
       badge: 'Anti-Adhésif Pro',
       features: [
         'Revêtement silicone double face de qualité supérieure - pas besoin de beurrer ou huiler',
@@ -585,8 +585,8 @@ const products: Product[] = [
     },
     en: {
       name: 'Baking Paper',
-      tagline: 'One Twist Keeps It Safe',
-      description: 'The baker\'s ultimate partner. twist Baking Paper is coated on both sides with a premium non-stick silicone layer, resisting high oven temperatures while letting baked creations slide right off.',
+      tagline: 'Keeps It Perfectly Safe',
+      description: 'The baker\'s ultimate partner. Our Baking Paper is coated on both sides with a premium non-stick silicone layer, resisting high oven temperatures while letting baked creations slide right off.',
       badge: 'Non-Stick Pro',
       features: [
         'Premium double-sided silicone non-stick coating - no greasing or sprays needed',
@@ -729,14 +729,44 @@ function ProductVisual({ visualType }: { visualType: string }) {
 
 export default function Products() {
   const { language, t } = useLanguage();
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedDimension, setSelectedDimension] = useState<string>('');
 
-  // Scroll to top on load
+  const selectedCategory = searchParams.get('category') || 'all';
+
+  const setSelectedCategory = (category: string) => {
+    setSearchParams((prev) => {
+      if (category === 'all') {
+        prev.delete('category');
+      } else {
+        prev.set('category', category);
+      }
+      return prev;
+    }, { replace: true });
+
+    // Smooth scroll to interactive finder
+    const element = document.getElementById('product-finder');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Scroll to top on load, or to finder if category is preselected
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const category = searchParams.get('category');
+    if (category && category !== 'all') {
+      const timer = setTimeout(() => {
+        const element = document.getElementById('product-finder');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 300);
+      return () => clearTimeout(timer);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   // Filter products based on category and search query
@@ -744,9 +774,8 @@ export default function Products() {
     return products.filter((product) => {
       const matchesCategory =
         selectedCategory === 'all' ||
-        (selectedCategory === 'adpro-tapes' && product.brand === 'ADPRO' && product.category === 'tapes') ||
-        (selectedCategory === 'adpro-packaging' && product.brand === 'ADPRO' && product.category === 'packaging') ||
-        (selectedCategory === 'twist-food' && product.brand === 'twist');
+        (selectedCategory === 'tapes' && product.category === 'tapes') ||
+        (selectedCategory === 'packaging' && (product.category === 'packaging' || product.category === 'kitchen'));
 
       const productData = language === 'fr' ? product.fr : product.en;
       const matchesSearch =
@@ -825,21 +854,21 @@ export default function Products() {
             transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-6"
           >
-            <div className="bg-surface border border-border-muted p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
-              <div className="font-display-lg text-headline-xl text-primary mb-1">2</div>
+            <div className="bg-surface border border-border-muted p-4 sm:p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
+              <div className="font-display-lg text-headline-lg sm:text-headline-xl md:text-[20px] lg:text-[24px] xl:text-headline-xl text-primary mb-1">2</div>
               <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('products.statBrands')}</div>
             </div>
-            <div className="bg-surface border border-border-muted p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
-              <div className="font-display-lg text-headline-xl text-primary mb-1">12+</div>
+            <div className="bg-surface border border-border-muted p-4 sm:p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
+              <div className="font-display-lg text-headline-lg sm:text-headline-xl md:text-[20px] lg:text-[24px] xl:text-headline-xl text-primary mb-1">12+</div>
               <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('products.statCategories')}</div>
             </div>
-            <div className="bg-surface border border-border-muted p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
-              <div className="font-display-lg text-headline-xl text-secondary mb-1">100%</div>
+            <div className="bg-surface border border-border-muted p-4 sm:p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
+              <div className="font-display-lg text-headline-lg sm:text-headline-xl md:text-[20px] lg:text-[24px] xl:text-headline-xl text-secondary mb-1">100%</div>
               <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('products.statFood')}</div>
             </div>
-            <div className="bg-surface border border-border-muted p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
-              <div className="font-display-lg text-headline-xl text-primary mb-1">
-                {language === 'fr' ? 'Sur Mesure' : 'Custom'}
+            <div className="bg-surface border border-border-muted p-4 sm:p-5 rounded-2xl shadow-subtle hover:border-primary/20 transition-colors">
+              <div className="font-display-lg text-headline-lg sm:text-headline-xl md:text-[20px] lg:text-[24px] xl:text-headline-xl text-primary mb-1">
+                {language === 'fr' ? 'Personnalisé' : 'Custom'}
               </div>
               <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">{t('products.statPrinting')}</div>
             </div>
@@ -873,10 +902,10 @@ export default function Products() {
                 <span className="bg-primary/5 text-primary text-[12px] font-medium px-3 py-1 rounded-full border border-primary/10">5S Standards</span>
               </div>
               <button 
-                onClick={() => setSelectedCategory('adpro-tapes')} 
+                onClick={() => setSelectedCategory('tapes')} 
                 className="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:underline text-left self-start group cursor-pointer"
               >
-                {language === 'fr' ? 'Filtrer le Portfolio ADPRO' : 'Filter ADPRO Portfolio'} 
+                {language === 'fr' ? 'Découvrir nos Rubans Adhésifs' : 'Discover our Adhesive Tapes'} 
                 <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </button>
             </div>
@@ -897,7 +926,7 @@ export default function Products() {
               </div>
             </div>
           </motion.div>
-
+ 
           {/* twist Master Module */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
@@ -924,11 +953,13 @@ export default function Products() {
             </div>
             <div className="p-8 md:p-12 flex flex-col justify-center order-1 md:order-2">
               <div className="text-secondary font-label-md text-label-md uppercase tracking-wider mb-2">
-                {language === 'fr' ? 'Solutions Restauration & Cuisine' : 'Food Service & Kitchen Solutions'}
+                {language === 'fr' ? 'Gamme Qualité Alimentaire' : 'Premium Food-Grade Range'}
               </div>
-              <h2 className="font-display-lg text-headline-xl text-on-surface mb-4">twist</h2>
+              <h2 className="font-display-lg text-headline-xl text-on-surface mb-4">
+                {language === 'fr' ? 'Restauration & Cuisine' : 'Food Service & Kitchen'}
+              </h2>
               <p className="font-body-md text-body-md text-on-surface-variant mb-6 leading-relaxed">
-                {t('products.twistDesc')}
+                {t('products.foodServiceDesc')}
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
                 <span className="bg-secondary/5 text-secondary text-[12px] font-medium px-3 py-1 rounded-full border border-secondary/10">100% Recyclable Foil</span>
@@ -936,10 +967,10 @@ export default function Products() {
                 <span className="bg-secondary/5 text-secondary text-[12px] font-medium px-3 py-1 rounded-full border border-secondary/10">Superior Elasticity</span>
               </div>
               <button 
-                onClick={() => setSelectedCategory('twist-food')} 
+                onClick={() => setSelectedCategory('packaging')} 
                 className="inline-flex items-center gap-2 text-secondary font-label-md text-label-md hover:underline text-left self-start group cursor-pointer"
               >
-                {language === 'fr' ? 'Filtrer la Collection twist' : 'Filter twist Collection'} 
+                {language === 'fr' ? 'Découvrir nos Films & Emballages' : 'Discover our Films & Packaging'} 
                 <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </button>
             </div>
@@ -949,7 +980,7 @@ export default function Products() {
       </section>
 
       {/* FILTER & INTERACTIVE SHOWCASE SECTION */}
-      <section className="py-20 bg-surface-container-low border-t border-border-muted">
+      <section id="product-finder" className="py-20 bg-surface-container-low border-t border-border-muted">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
           
           <div className="text-center mb-12">
@@ -969,9 +1000,8 @@ export default function Products() {
             <div className="flex flex-wrap gap-2 bg-surface p-1.5 rounded-2xl border border-border-muted shadow-subtle w-full md:w-auto">
               {[
                 { id: 'all', label: t('products.all'), icon: 'grid_view' },
-                { id: 'adpro-tapes', label: t('products.tapes'), icon: 'layers' },
-                { id: 'adpro-packaging', label: language === 'fr' ? 'ADPRO Spécialités' : 'ADPRO Specialty', icon: 'package_2' },
-                { id: 'twist-food', label: language === 'fr' ? 'twist Emballages' : 'twist Food Wrap', icon: 'restaurant' }
+                { id: 'tapes', label: language === 'fr' ? 'Rubans Adhésifs' : 'Adhesive Tapes', icon: 'layers' },
+                { id: 'packaging', label: language === 'fr' ? 'Films & Emballages' : 'Films & Packaging', icon: 'package_2' }
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -1046,7 +1076,7 @@ export default function Products() {
                             ? 'bg-primary/5 text-primary border-primary/20'
                             : 'bg-secondary/5 text-secondary border-secondary/20'
                         }`}>
-                          {product.brand}
+                          {product.brand === 'ADPRO' ? 'ADPRO' : 'twist'}
                         </span>
                         <span className="bg-surface border border-border-muted text-on-surface-variant px-2.5 py-1 rounded-md text-[11px] font-medium shadow-sm">
                           {productData.badge}
@@ -1159,7 +1189,7 @@ export default function Products() {
                 </div>
 
                 <div className="inline-block bg-white/10 text-white border border-white/20 px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider mb-3">
-                  {selectedProduct.brand} • {(language === 'fr' ? selectedProduct.fr : selectedProduct.en).badge}
+                  {(selectedProduct.brand === 'ADPRO' ? 'ADPRO' : 'twist')} • {(language === 'fr' ? selectedProduct.fr : selectedProduct.en).badge}
                 </div>
                 <h2 className="font-display-lg text-headline-xl md:text-3xl mb-1">
                   {(language === 'fr' ? selectedProduct.fr : selectedProduct.en).name}
@@ -1288,7 +1318,7 @@ export default function Products() {
               <div className="p-6 md:p-8 bg-surface-container border-t border-border-muted flex flex-col sm:flex-row gap-4 items-center justify-between">
                 <div className="text-left">
                   <div className="text-label-sm font-label-sm text-on-surface-variant">
-                    {language === 'fr' ? 'Vous recherchez une solution sur mesure ?' : 'Looking for a custom solution?'}
+                    {language === 'fr' ? 'Vous recherchez une technologie personnalisée ?' : 'Looking for a custom technology?'}
                   </div>
                   <div className="font-body-sm text-body-sm text-on-surface">
                     {language === 'fr' 
