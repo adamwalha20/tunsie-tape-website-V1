@@ -195,13 +195,7 @@ export default function Contact() {
 
               {/* Locations */}
               <div className="grid gap-4">
-                <motion.a 
-                  href="https://maps.google.com/?q=34.8434752848021,10.806590855091379"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02, x: 5 }} 
-                  className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md cursor-pointer text-left decoration-none"
-                >
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
                   <div className="text-primary mt-0.5">
                     <span className="material-symbols-outlined">location_city</span>
                   </div>
@@ -209,15 +203,9 @@ export default function Contact() {
                     <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.sfaxHeadquarters')}</h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.sfaxAddress')}</p>
                   </div>
-                </motion.a>
+                </motion.div>
 
-                <motion.a 
-                  href="https://maps.google.com/?q=34.75890075803849,10.775005163635436"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02, x: 5 }} 
-                  className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md cursor-pointer text-left decoration-none"
-                >
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
                   <div className="text-secondary mt-0.5">
                     <span className="material-symbols-outlined">storefront</span>
                   </div>
@@ -225,15 +213,9 @@ export default function Contact() {
                     <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.sfaxPoudriere')}</h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.sfaxPoudriereAddress')}</p>
                   </div>
-                </motion.a>
+                </motion.div>
                 
-                <motion.a 
-                  href="https://maps.google.com/?q=36.90759211033097,10.184276916920725"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02, x: 5 }} 
-                  className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md cursor-pointer text-left decoration-none"
-                >
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
                   <div className="text-secondary mt-0.5">
                     <span className="material-symbols-outlined">storefront</span>
                   </div>
@@ -241,15 +223,9 @@ export default function Contact() {
                     <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.tunisBranch')}</h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.tunisAddress')}</p>
                   </div>
-                </motion.a>
+                </motion.div>
 
-                <motion.a 
-                  href="https://maps.google.com/?q=35.769385575465954,10.570434544906757"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02, x: 5 }} 
-                  className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md cursor-pointer text-left decoration-none"
-                >
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
                   <div className="text-secondary mt-0.5">
                     <span className="material-symbols-outlined">warehouse</span>
                   </div>
@@ -257,7 +233,7 @@ export default function Contact() {
                     <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.msakenFacility')}</h4>
                     <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.msakenAddress')}</p>
                   </div>
-                </motion.a>
+                </motion.div>
               </div>
 
             </motion.div>

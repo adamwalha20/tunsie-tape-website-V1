@@ -127,9 +127,9 @@ export default function About() {
             {/* Sfax HQ */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
-                  {showMap['sfax'] ? (
+                   {showMap['sfax'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=34.8434752848021,10.806590855091379&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=tunise%20tape%20sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -158,7 +158,7 @@ export default function About() {
                    {t('about.sfaxDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=34.8434752848021,10.806590855091379" 
+                   href="https://maps.google.com/?q=tunise+tape+sfax" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
@@ -172,9 +172,9 @@ export default function About() {
             {/* Sfax Poudriere */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
-                  {showMap['sfax_poudriere'] ? (
+                   {showMap['sfax_poudriere'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=34.75890075803849,10.775005163635436&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=tunisia%20tape%20manufactuer&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -203,7 +203,7 @@ export default function About() {
                    {t('about.sfaxPoudriereDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=34.75890075803849,10.775005163635436" 
+                   href="https://maps.google.com/?q=tunisia+tape+manufactuer" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
@@ -217,9 +217,9 @@ export default function About() {
             {/* Tunis */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
-                  {showMap['tunis'] ? (
+                   {showMap['tunis'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=36.90759211033097,10.184276916920725&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=tunisa%20tape%20tunis&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -248,7 +248,7 @@ export default function About() {
                    {t('about.tunisDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=36.90759211033097,10.184276916920725" 
+                   href="https://maps.google.com/?q=tunisa+tape+tunis" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
@@ -262,9 +262,9 @@ export default function About() {
             {/* Msaken */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
-                  {showMap['msaken'] ? (
+                   {showMap['msaken'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=35.769385575465954,10.570434544906757&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=tunisia%20tape%20mseken&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -293,7 +293,7 @@ export default function About() {
                    {t('about.msakenDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=35.769385575465954,10.570434544906757" 
+                   href="https://maps.google.com/?q=tunisia+tape+mseken" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
