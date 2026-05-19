@@ -129,7 +129,7 @@ export default function About() {
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
                   {showMap['sfax'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=Tunisie%20tape%20Route%20de%20Mahdia%20Km%2010%20Sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=34.8434752848021,10.806590855091379&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -158,7 +158,7 @@ export default function About() {
                    {t('about.sfaxDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=Tunisie+tape+Route+de+Mahdia+Km+10+Sfax" 
+                   href="https://maps.google.com/?q=34.8434752848021,10.806590855091379" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
@@ -174,7 +174,7 @@ export default function About() {
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
                   {showMap['sfax_poudriere'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=Zone%20Industrielle%20Poudri%C3%A8re%201%2C%203018%20Sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=34.75890075803849,10.775005163635436&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -203,7 +203,7 @@ export default function About() {
                    {t('about.sfaxPoudriereDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=Zone+Industrielle+Poudri%C3%A8re+1%2C+3018+Sfax" 
+                   href="https://maps.google.com/?q=34.75890075803849,10.775005163635436" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
@@ -219,7 +219,7 @@ export default function About() {
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
                   {showMap['tunis'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=126%20Avenue%20Mustapha%20Mohsen%2C%20Borj%20Louzir%2C%20Ariana%2C%20Tunis&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=36.90759211033097,10.184276916920725&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -248,7 +248,7 @@ export default function About() {
                    {t('about.tunisDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=126+Avenue+Mustapha+Mohsen%2C+Borj+Louzir%2C+Ariana%2C+Tunis" 
+                   href="https://maps.google.com/?q=36.90759211033097,10.184276916920725" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
@@ -264,7 +264,7 @@ export default function About() {
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
                   {showMap['msaken'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=Route%20de%20Kairouan%2C%20Avenue%20Boujnah%2C%20Msaken%204070%2C%20Sousse&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=35.769385575465954,10.570434544906757&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -293,7 +293,7 @@ export default function About() {
                    {t('about.msakenDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=Route+de+Kairouan%2C+Avenue+Boujnah%2C+Msaken+4070%2C+Sousse" 
+                   href="https://maps.google.com/?q=35.769385575465954,10.570434544906757" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
