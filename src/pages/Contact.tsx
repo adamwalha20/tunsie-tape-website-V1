@@ -204,6 +204,16 @@ export default function Contact() {
                     <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.sfaxAddress')}</p>
                   </div>
                 </motion.div>
+
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
+                  <div className="text-secondary mt-0.5">
+                    <span className="material-symbols-outlined">storefront</span>
+                  </div>
+                  <div>
+                    <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.sfaxPoudriere')}</h4>
+                    <p className="font-body-sm text-body-sm text-on-surface-variant whitespace-pre-line">{t('contact.sfaxPoudriereAddress')}</p>
+                  </div>
+                </motion.div>
                 
                 <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
                   <div className="text-secondary mt-0.5">

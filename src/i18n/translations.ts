@@ -35,6 +35,9 @@ export interface TranslationSchema {
     sfaxBadge: string;
     sfaxTitle: string;
     sfaxDesc: string;
+    sfaxPoudriereBadge: string;
+    sfaxPoudriereTitle: string;
+    sfaxPoudriereDesc: string;
     tunisBadge: string;
     tunisTitle: string;
     tunisDesc: string;
@@ -87,6 +90,8 @@ export interface TranslationSchema {
     commercial: string;
     sfaxHeadquarters: string;
     sfaxAddress: string;
+    sfaxPoudriere: string;
+    sfaxPoudriereAddress: string;
     tunisBranch: string;
     tunisAddress: string;
     msakenFacility: string;
@@ -144,8 +149,11 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       sitesTitle: 'Nos Sites',
       sitesSubtitle: 'Une présence stratégique pour répondre efficacement à vos besoins à travers tout le territoire et à l\'international.',
       sfaxBadge: 'Siège & Production',
-      sfaxTitle: 'Sfax',
-      sfaxDesc: 'Notre centre d\'opérations principal abritant la fabrication de pointe, la recherche et le contrôle qualité.',
+      sfaxTitle: 'Sfax (Siège)',
+      sfaxDesc: 'Notre siège social et centre de production principal abritant la fabrication de pointe, la recherche et le contrôle qualité.',
+      sfaxPoudriereBadge: 'Dépôt Commercial',
+      sfaxPoudriereTitle: 'Sfax (Poudrière)',
+      sfaxPoudriereDesc: 'Notre succursale commerciale et logistique située dans la zone industrielle pour servir rapidement nos partenaires régionaux.',
       tunisBadge: 'Dépôt Commercial',
       tunisTitle: 'Tunis',
       tunisDesc: 'Carrefour de distribution de la capitale, assurant une logistique rapide pour nos partenaires nord-tunisiens.',
@@ -198,10 +206,12 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       commercial: 'Demandes Commerciales',
       sfaxHeadquarters: 'Siège Social Sfax',
       sfaxAddress: 'Siège & Production\nRoute de Mahdia Km 10',
+      sfaxPoudriere: 'Dépôt Sfax Poudrière',
+      sfaxPoudriereAddress: 'Dépôt Commercial\nZone Industrielle Poudrière 1, Sfax',
       tunisBranch: 'Succursale Tunis',
-      tunisAddress: 'Dépôt Commercial',
+      tunisAddress: '126 Av. Mustapha Mohsen\nBorj Louzir, Ariana, Tunis',
       msakenFacility: 'Dépôt Msaken',
-      msakenAddress: 'Dépôt Commercial'
+      msakenAddress: 'Route de Kairouan\nMsaken 4070, Sousse'
     },
     footer: {
       legal: 'Mentions Légales',
@@ -252,13 +262,16 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       visionDesc: 'Become the undisputed leader and global reference in industrial and food packaging technologies, constantly pushing the boundaries of performance and sustainability.',
       sitesTitle: 'Nos Sites',
       sitesSubtitle: 'A strategic presence to efficiently meet your needs across the entire territory and internationally.',
-      sfaxBadge: 'Siège & Production',
-      sfaxTitle: 'Sfax',
+      sfaxBadge: 'Headquarters & Production',
+      sfaxTitle: 'Sfax (HQ)',
       sfaxDesc: 'Our main operations center housing advanced manufacturing, research, and quality control.',
-      tunisBadge: 'Dépôt Commercial',
+      sfaxPoudriereBadge: 'Commercial Branch',
+      sfaxPoudriereTitle: 'Sfax (Poudriere)',
+      sfaxPoudriereDesc: 'Our commercial and logistics center located in the industrial zone to serve regional partners.',
+      tunisBadge: 'Commercial Branch',
       tunisTitle: 'Tunis',
       tunisDesc: 'Capital distribution hub, ensuring rapid logistics for our north Tunisian partners.',
-      msakenBadge: 'Dépôt Commercial',
+      msakenBadge: 'Commercial Branch',
       msakenTitle: 'Msaken',
       msakenDesc: 'Central logistics platform to support our industrial clientele in the Tunisian Sahel.',
       viewMap: 'Show on Map',
@@ -307,10 +320,12 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       commercial: 'Commercial Inquiries',
       sfaxHeadquarters: 'Sfax Headquarters',
       sfaxAddress: 'Siège & Production\nRoute de Mahdia Km 10',
+      sfaxPoudriere: 'Sfax Poudriere Branch',
+      sfaxPoudriereAddress: 'Dépôt Commercial\nZone Industrielle Poudrière 1, Sfax',
       tunisBranch: 'Tunis Branch',
-      tunisAddress: 'Dépôt Commercial',
+      tunisAddress: '126 Av. Mustapha Mohsen\nBorj Louzir, Ariana, Tunis',
       msakenFacility: 'Msaken Facility',
-      msakenAddress: 'Dépôt Commercial'
+      msakenAddress: 'Route de Kairouan\nMsaken 4070, Sousse'
     },
     footer: {
       legal: 'Legal',

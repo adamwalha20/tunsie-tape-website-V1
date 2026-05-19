@@ -118,22 +118,22 @@ export default function About() {
           </motion.div>
 
           <motion.div 
-            className="grid md:grid-cols-3 gap-8"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
           >
-            {/* Sfax */}
+            {/* Sfax HQ */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
                   {showMap['sfax'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=Zone%20Industrielle%20Poudri%C3%A8re%201%2C%203018%20Sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=Tunisie%20tape%20Route%20de%20Mahdia%20Km%2010%20Sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
-                       title="Sfax Location Map"
+                       title="Sfax HQ Map"
                      ></iframe>
                   ) : (
                      <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80" alt="Sfax Manufacturing" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -154,8 +154,53 @@ export default function About() {
                </div>
                <div className="p-6">
                  <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.sfaxTitle')}</h3>
-                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4">
+                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 font-normal min-h-[64px]">
                    {t('about.sfaxDesc')}
+                 </p>
+                 <a 
+                   href="https://maps.google.com/?q=Tunisie+tape+Route+de+Mahdia+Km+10+Sfax" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
+                 >
+                   <span className="material-symbols-outlined text-[16px]">directions</span>
+                   Directions (Google Maps)
+                 </a>
+               </div>
+            </motion.div>
+
+            {/* Sfax Poudriere */}
+            <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
+               <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
+                  {showMap['sfax_poudriere'] ? (
+                     <iframe
+                       src="https://maps.google.com/maps?q=Zone%20Industrielle%20Poudri%C3%A8re%201%2C%203018%20Sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       className="w-full h-full border-0"
+                       allowFullScreen
+                       loading="lazy"
+                       title="Sfax Poudriere Map"
+                     ></iframe>
+                  ) : (
+                     <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Sfax Poudriere Facility" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  )}
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted z-10">
+                     <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                     {t('about.sfaxPoudriereBadge')}
+                  </div>
+                  <button
+                    onClick={() => toggleMap('sfax_poudriere')}
+                    className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-1.5 bg-surface-container-lowest/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-label-sm font-label-sm text-on-surface border border-border-muted shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 active:scale-95"
+                  >
+                     <span className="material-symbols-outlined text-[16px]">
+                       {showMap['sfax_poudriere'] ? 'photo' : 'map'}
+                     </span>
+                     {showMap['sfax_poudriere'] ? t('about.viewPhoto') : t('about.viewMap')}
+                  </button>
+               </div>
+               <div className="p-6">
+                 <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.sfaxPoudriereTitle')}</h3>
+                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 font-normal min-h-[64px]">
+                   {t('about.sfaxPoudriereDesc')}
                  </p>
                  <a 
                    href="https://maps.google.com/?q=Zone+Industrielle+Poudri%C3%A8re+1%2C+3018+Sfax" 
@@ -174,7 +219,7 @@ export default function About() {
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
                   {showMap['tunis'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=Avenue%20Mustapha%20Mohsen%2C%20Borj%20Louzir%2C%20Ariana%2C%20Tunis&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=126%20Avenue%20Mustapha%20Mohsen%2C%20Borj%20Louzir%2C%20Ariana%2C%20Tunis&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -199,11 +244,11 @@ export default function About() {
                </div>
                <div className="p-6">
                  <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.tunisTitle')}</h3>
-                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4">
+                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 font-normal min-h-[64px]">
                    {t('about.tunisDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=Avenue+Mustapha+Mohsen%2C+Borj+Louzir%2C+Ariana%2C+Tunis" 
+                   href="https://maps.google.com/?q=126+Avenue+Mustapha+Mohsen%2C+Borj+Louzir%2C+Ariana%2C+Tunis" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
@@ -244,7 +289,7 @@ export default function About() {
                </div>
                <div className="p-6">
                  <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.msakenTitle')}</h3>
-                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4">
+                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 font-normal min-h-[64px]">
                    {t('about.msakenDesc')}
                  </p>
                  <a 
