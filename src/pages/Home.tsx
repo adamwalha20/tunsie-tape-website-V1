@@ -81,7 +81,7 @@ export default function Home() {
   return (
     <>
       {/* Full Screen Swipeable Hero Carousel */}
-      <section className="relative w-full h-screen bg-black overflow-hidden flex flex-col justify-center">
+      <section className="relative w-full h-[85vh] bg-black overflow-hidden flex flex-col justify-center">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentIndex}
