@@ -1,18 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { products } from '../data/products';
 
 export default function Home() {
   const { language, t } = useLanguage();
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
 
   useEffect(() => {
-    if (carouselRef.current) {
-      setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
-    }
+    const interval = setInterval(() => {
+      setCurrentProductIndex((prev) => (prev + 1) % products.length);
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   const fadeInUp = {
@@ -64,90 +64,45 @@ export default function Home() {
               </Link>
             </motion.div>
           </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Featured Products Carousel */}
-      <section className="py-20 bg-surface-container-lowest border-b border-border-muted overflow-hidden">
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-12 flex items-end justify-between">
-          <div>
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="font-headline-xl md:text-5xl text-on-surface font-semibold mb-4"
-            >
-              {language === 'fr' ? 'Nos Solutions ' : 'Featured '}
-              <span className="text-primary">{language === 'fr' ? 'Phares' : 'Products'}</span>
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="font-body-lg text-on-surface-variant max-w-xl"
-            >
-              {language === 'fr' 
-                ? 'Faites glisser pour découvrir nos technologies adhésives et emballages de qualité.' 
-                : 'Swipe to explore our premium adhesive technologies and food packaging solutions.'}
-            </motion.p>
-          </div>
-          <Link to="/products" className="hidden md:inline-flex items-center gap-2 text-primary hover:underline font-label-md">
-            {language === 'fr' ? 'Voir tout' : 'View all'} <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-          </Link>
-        </div>
-
-        <motion.div 
-          ref={carouselRef} 
-          className="cursor-grab active:cursor-grabbing overflow-hidden px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto"
-          whileTap={{ cursor: "grabbing" }}
-        >
-          <motion.div 
-            drag="x" 
-            dragConstraints={{ right: 0, left: -width }} 
-            className="flex gap-6 md:gap-8"
-          >
-            {products.slice(0, 6).map((product, idx) => (
-              <motion.div 
-                key={product.id}
-                className="min-w-[280px] md:min-w-[350px] bg-surface rounded-2xl overflow-hidden border border-border-muted shadow-sm hover:shadow-xl transition-shadow flex flex-col group"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5, ease: "easeOut" }}
+          <motion.div variants={fadeInUp} className="mt-20 mx-auto max-w-3xl h-[160px] relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentProductIndex}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 flex items-center bg-surface-container/50 backdrop-blur-md rounded-2xl border border-primary/20 shadow-lg p-6 gap-6"
               >
-                <div className="aspect-[4/3] bg-surface relative overflow-hidden flex items-center justify-center border-b border-border-muted p-6">
+                <div className="w-32 h-32 flex-shrink-0 bg-surface rounded-xl flex items-center justify-center p-2 shadow-sm border border-border-muted overflow-hidden">
                   <img 
-                    src={product.image} 
-                    alt={language === 'fr' ? product.fr.name : product.en.name} 
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    draggable="false"
+                    src={products[currentProductIndex].image} 
+                    alt={language === 'fr' ? products[currentProductIndex].fr.name : products[currentProductIndex].en.name} 
+                    className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-4 left-4 flex gap-1.5">
-                    <span className={`px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider border shadow-sm ${
-                      product.brand === 'ADPRO'
-                        ? 'bg-primary/5 text-primary border-primary/20'
-                        : 'bg-secondary/5 text-secondary border-secondary/20'
-                    }`}>
-                      {product.brand}
-                    </span>
-                  </div>
                 </div>
-                <div className="p-6 flex-grow flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2 group-hover:text-primary transition-colors">
-                      {language === 'fr' ? product.fr.name : product.en.name}
+                <div className="text-left flex-grow">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${
+                      products[currentProductIndex].brand === 'ADPRO'
+                        ? 'bg-primary/10 text-primary border-primary/20'
+                        : 'bg-secondary/10 text-secondary border-secondary/20'
+                    }`}>
+                      {products[currentProductIndex].brand}
+                    </span>
+                    <h3 className="font-headline-md text-on-surface font-semibold">
+                      {language === 'fr' ? products[currentProductIndex].fr.name : products[currentProductIndex].en.name}
                     </h3>
-                    <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mb-4">
-                      {language === 'fr' ? product.fr.description : product.en.description}
-                    </p>
                   </div>
-                  <Link to={`/products?category=${product.category}`} className="text-primary font-label-sm hover:underline mt-auto">
-                    {language === 'fr' ? 'Découvrir' : 'Discover'} →
+                  <p className="font-body-sm text-on-surface-variant line-clamp-2 mb-3">
+                    {language === 'fr' ? products[currentProductIndex].fr.description : products[currentProductIndex].en.description}
+                  </p>
+                  <Link to={`/products?category=${products[currentProductIndex].category}`} className="text-primary font-label-sm hover:underline flex items-center gap-1">
+                    {language === 'fr' ? 'Découvrir ce produit' : 'Discover this product'} <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
                   </Link>
                 </div>
               </motion.div>
-            ))}
+            </AnimatePresence>
           </motion.div>
         </motion.div>
       </section>
