@@ -46,7 +46,7 @@ export default function Layout() {
 
   return (
     <div className="bg-surface-container-lowest text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed antialiased overflow-x-hidden min-h-screen flex flex-col">
-      <header className="bg-surface-container-lowest/80 backdrop-blur-md fixed top-0 w-full shadow-subtle z-50 border-b border-border-muted/50">
+      <header className="bg-white/60 backdrop-blur-xl fixed top-0 w-full shadow-sm z-50 border-b border-white/40 supports-[backdrop-filter]:bg-white/60 transition-all duration-300">
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-20">
           <div className="flex items-center gap-4">
             <Link to="/" onClick={closeMenu}>
@@ -91,7 +91,7 @@ export default function Layout() {
                 EN
               </button>
             </div>
-            <Link to="/contact" className="bg-primary hover:bg-secondary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:scale-[1.02] transform">
+            <Link to="/contact" className="bg-primary hover:bg-secondary text-white px-6 py-2.5 rounded-lg font-label-md text-label-md transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/30 transform">
               {t('nav.getQuote')}
             </Link>
           </div>

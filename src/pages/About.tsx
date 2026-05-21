@@ -73,7 +73,7 @@ export default function About() {
             className="grid md:grid-cols-2 gap-8"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             variants={staggerContainer}
           >
             {/* Mission Card */}
@@ -108,7 +108,7 @@ export default function About() {
             className="text-center max-w-2xl mx-auto mb-16"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             variants={fadeInUp}
           >
             <h2 className="font-display-lg text-display-lg text-on-surface mb-6">{t('about.sitesTitle')}</h2>
@@ -121,7 +121,7 @@ export default function About() {
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
+            viewport={{ once: true }}
             variants={staggerContainer}
           >
             {/* Sfax HQ */}

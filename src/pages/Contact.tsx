@@ -184,7 +184,7 @@ export default function Contact() {
                     whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto bg-primary hover:bg-primary-container text-on-primary px-10 py-4 rounded-lg font-label-md text-label-md transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full sm:w-auto bg-primary hover:bg-primary-container text-white px-10 py-4 rounded-lg font-label-md text-label-md transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-sm hover:shadow-xl hover:shadow-primary/40 hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <>
@@ -238,7 +238,7 @@ export default function Contact() {
 
               {/* Locations */}
               <div className="grid gap-4">
-                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-md flex gap-4 transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
                   <div className="text-primary mt-0.5">
                     <span className="material-symbols-outlined">location_city</span>
                   </div>
@@ -248,7 +248,7 @@ export default function Contact() {
                   </div>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-md flex gap-4 transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
                   <div className="text-secondary mt-0.5">
                     <span className="material-symbols-outlined">storefront</span>
                   </div>
@@ -258,7 +258,7 @@ export default function Contact() {
                   </div>
                 </motion.div>
                 
-                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-md flex gap-4 transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
                   <div className="text-secondary mt-0.5">
                     <span className="material-symbols-outlined">storefront</span>
                   </div>
@@ -268,7 +268,7 @@ export default function Contact() {
                   </div>
                 </motion.div>
 
-                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-subtle flex gap-4 transition-all hover:shadow-md">
+                <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-md flex gap-4 transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
                   <div className="text-secondary mt-0.5">
                     <span className="material-symbols-outlined">warehouse</span>
                   </div>

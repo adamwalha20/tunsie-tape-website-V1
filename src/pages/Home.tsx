@@ -64,7 +64,7 @@ export default function Home() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               variants={staggerContainer}
             >
               <motion.h2 variants={fadeInUp} className="font-headline-xl text-headline-xl text-on-surface mb-6">
@@ -82,7 +82,7 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, clipPath: 'inset(10% 10% 10% 10% round 10px)' }}
               whileInView={{ opacity: 1, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 10px)' }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="relative overflow-hidden border border-border-muted shadow-subtle aspect-[4/3] group"
             >
@@ -100,7 +100,7 @@ export default function Home() {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true }}
           variants={fadeInUp}
           className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center"
         >

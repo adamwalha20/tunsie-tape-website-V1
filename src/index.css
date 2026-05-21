@@ -54,15 +54,15 @@
   --color-secondary-container: #e02928;
 
   /* Custom Font Families */
-  --font-body-sm: "Inter";
-  --font-headline-xl: "Inter";
-  --font-display-lg: "Inter";
-  --font-label-sm: "Inter";
-  --font-body-lg: "Inter";
-  --font-body-md: "Inter";
-  --font-headline-lg: "Inter";
-  --font-label-md: "Inter";
-  --font-display-lg-mobile: "Inter";
+  --font-body-sm: "Plus Jakarta Sans", sans-serif;
+  --font-headline-xl: "Plus Jakarta Sans", sans-serif;
+  --font-display-lg: "Plus Jakarta Sans", sans-serif;
+  --font-label-sm: "Plus Jakarta Sans", sans-serif;
+  --font-body-lg: "Plus Jakarta Sans", sans-serif;
+  --font-body-md: "Plus Jakarta Sans", sans-serif;
+  --font-headline-lg: "Plus Jakarta Sans", sans-serif;
+  --font-label-md: "Plus Jakarta Sans", sans-serif;
+  --font-display-lg-mobile: "Plus Jakarta Sans", sans-serif;
 
   /* Border Radii */
   /* We map from standard to default, retaining what we have. */
