@@ -119,65 +119,43 @@ export default function Home() {
             
             {/* Dark Gradient Overlay for Text Readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30 pointer-events-none" />
-
-            {/* Content Layer */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-6">
-              <div className="max-w-4xl text-center text-white mt-16 md:mt-24 pointer-events-auto">
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.6 }}
-                  className="inline-block px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/90 font-label-sm uppercase tracking-wider mb-6 shadow-lg"
-                >
-                  <span className={`inline-block w-2 h-2 rounded-full mr-2 ${currentProduct.brand === 'ADPRO' ? 'bg-blue-400' : 'bg-red-500'}`}></span>
-                  {currentProduct.brand} • {prodData.badge}
-                </motion.div>
-                
-                <motion.h1 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                  className="font-display-lg-mobile md:font-display-lg text-4xl md:text-6xl lg:text-7xl leading-tight mb-6"
-                >
-                  {prodData.name}
-                </motion.h1>
-                
-                <motion.p 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
-                  className="font-body-lg text-lg md:text-2xl text-white/80 max-w-2xl mx-auto mb-10 leading-relaxed italic"
-                >
-                  "{prodData.tagline}"
-                </motion.p>
-                
-                <motion.div 
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                >
-                  <Link 
-                    to={`/products?category=${currentProduct.category}`} 
-                    className={`inline-flex justify-center items-center px-10 py-4 rounded-xl font-label-md transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 ${
-                      currentProduct.brand === 'ADPRO' 
-                        ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-blue-900/50' 
-                        : 'bg-red-600 hover:bg-red-500 text-white shadow-red-900/50'
-                    }`}
-                  >
-                    {language === 'fr' ? 'Découvrir la Gamme' : 'Explore Range'}
-                  </Link>
-                  <Link 
-                    to="/about" 
-                    className="inline-flex justify-center items-center px-10 py-4 rounded-xl font-label-md bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
-                  >
-                    {t('home.legacyBtn')}
-                  </Link>
-                </motion.div>
-              </div>
-            </div>
           </motion.div>
         </AnimatePresence>
+
+        {/* Static Content Layer over the carousel */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-6 z-10">
+          <motion.div 
+            className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center pointer-events-auto"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md text-white px-4 py-1.5 rounded-full font-label-sm text-label-sm mb-8 border border-white/20 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-primary"></span>
+              {t('home.heroBadge')}
+            </motion.div>
+            <motion.h1 variants={fadeInUp} className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white leading-tight max-w-4xl mx-auto mb-6">
+              {t('home.heroTitleText1')}
+              <span className="text-primary">{t('home.heroTitleHighlight')}</span>
+              {t('home.heroTitleText2')}
+            </motion.h1>
+            <motion.p variants={fadeInUp} className="font-body-lg text-body-lg text-white/80 max-w-2xl mx-auto mb-10">
+              {t('home.heroSubtitle')}
+            </motion.p>
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link className="inline-flex justify-center w-full items-center bg-primary text-white px-8 py-3.5 rounded-lg font-label-md text-label-md transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1" to="/products">
+                  {t('home.exploreBtn')}
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link className="inline-flex justify-center w-full items-center bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 px-8 py-3.5 rounded-lg font-label-md text-label-md transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1" to="/about">
+                  {t('home.legacyBtn')}
+                </Link>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
 
         {/* Swipe Indicators & Pagination */}
         <div className="absolute bottom-10 left-0 right-0 flex justify-center items-center gap-6 z-10">
