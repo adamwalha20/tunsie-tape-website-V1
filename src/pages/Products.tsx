@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 
-import { products, Product, adproMasterImg, twistMasterImg } from '../data/products';
+import { products, type Product } from '../data/products';
+import { adproMasterImg, twistMasterImg } from '../data/products';
 
 function ProductVisual({ visualType }: { visualType: string }) {
   // Renders a high-end styled CSS/SVG graphic illustrating the product
