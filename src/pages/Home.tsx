@@ -113,7 +113,7 @@ export default function Home() {
               <img 
                 src={currentProduct.image} 
                 alt={prodData.name} 
-                className="w-full h-full object-cover opacity-80"
+                className="w-full h-full object-contain p-8 md:p-16 opacity-60"
               />
             </div>
             
