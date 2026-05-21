@@ -50,7 +50,7 @@ export default function Layout() {
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop flex justify-between items-center h-20">
           <div className="flex items-center gap-4">
             <Link to="/" onClick={closeMenu}>
-              <img alt="Tunisie Tape Logo" className="h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAixbv9GUtHkPhQXD09Y-GQDliCL8sJTxeJPA_Xw9WR10PDbaEY9geI_5qfUOLf9iPfuM_JIOWru1edBgvYgBY4us9wyLtwr4X5zWzYAdZfbZtsLx3m2-W41YoYmELmmggBH4QLF_mQjuHQkaclUZNCFiPnbNK7rEOqjMSO6gomWYctHyVD9FvRq2leBQ_aOXHTuBuNvfgiT-V4VT4TVA3AeKAxdiOKXsFwze2AVB45Hcbyt46lHZwVJK2xdmcaX_GcEjM9SPDPmks_" />
+              <img alt="Tunisie Tape Logo" className="h-10 object-contain" src="/header-logo.png" />
             </Link>
           </div>
           <nav className="hidden md:flex items-center gap-8">
@@ -171,46 +171,49 @@ export default function Layout() {
         </motion.div>
       </main>
 
-      <footer className="bg-surface-container-lowest border-t border-border-muted w-full mt-auto" id="footer">
-        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+      <footer className="bg-slate-900 text-slate-300 border-t-4 border-primary relative overflow-hidden w-full mt-auto shadow-2xl" id="footer">
+        {/* Decorative background glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/20 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
           <div className="space-y-6 md:col-span-1">
-            <img alt="Tunisie Tape Logo" className="h-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAixbv9GUtHkPhQXD09Y-GQDliCL8sJTxeJPA_Xw9WR10PDbaEY9geI_5qfUOLf9iPfuM_JIOWru1edBgvYgBY4us9wyLtwr4X5zWzYAdZfbZtsLx3m2-W41YoYmELmmggBH4QLF_mQjuHQkaclUZNCFiPnbNK7rEOqjMSO6gomWYctHyVD9FvRq2leBQ_aOXHTuBuNvfgiT-V4VT4TVA3AeKAxdiOKXsFwze2AVB45Hcbyt46lHZwVJK2xdmcaX_GcEjM9SPDPmks_" />
-            <p className="text-body-sm font-body-sm text-on-surface-variant">
+            <img alt="Tunisie Tape Logo" className="h-16 w-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded" src="/footer-logo.png" />
+            <p className="text-body-sm font-body-sm text-slate-400">
               © {new Date().getFullYear()} Tunisie Tape.<br/>{t('footer.allRights')}
             </p>
-            <div className="flex flex-col gap-3 text-body-sm font-body-sm text-on-surface-variant">
-              <div className="flex items-center gap-2 group">
-                <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">location_on</span>
-                <span>Sfax | Tunis | Msaken</span>
+            <div className="flex flex-col gap-3 text-body-sm font-body-sm text-slate-400">
+              <div className="flex items-center gap-2 group cursor-default">
+                <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors duration-300">location_on</span>
+                <span className="group-hover:text-slate-200 transition-colors">Sfax | Tunis | Msaken</span>
               </div>
               <div className="flex items-center gap-2 group">
-                <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors">mail</span>
-                <a className="hover:text-primary transition-colors" href="mailto:commercial@tunisietape.com">commercial@tunisietape.com</a>
+                <span className="material-symbols-outlined text-[18px] group-hover:text-primary transition-colors duration-300">mail</span>
+                <a className="hover:text-primary hover:tracking-wide transition-all duration-300" href="mailto:commercial@tunisietape.com">commercial@tunisietape.com</a>
               </div>
             </div>
           </div>
 
           <div className="md:col-span-1">
-            <h4 className="text-label-md font-label-md text-on-surface mb-4">{t('footer.legal')}</h4>
-            <ul className="space-y-3">
-              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/about">{t('footer.privacy')}</Link></li>
-              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/about">{t('footer.terms')}</Link></li>
+            <h4 className="text-label-md font-label-md text-white mb-6 uppercase tracking-wider text-sm">{t('footer.legal')}</h4>
+            <ul className="space-y-4">
+              <li><Link className="text-slate-400 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300 text-body-sm font-body-sm" to="/about">{t('footer.privacy')}</Link></li>
+              <li><Link className="text-slate-400 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300 text-body-sm font-body-sm" to="/about">{t('footer.terms')}</Link></li>
             </ul>
           </div>
 
           <div className="md:col-span-1">
-            <h4 className="text-label-md font-label-md text-on-surface mb-4">{t('footer.solutions')}</h4>
-            <ul className="space-y-3">
-              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/products?category=tapes">{t('footer.indSol')}</Link></li>
-              <li><Link className="text-on-surface-variant hover:text-primary transition-colors text-body-sm font-body-sm" to="/products?category=packaging">{t('footer.foodPack')}</Link></li>
+            <h4 className="text-label-md font-label-md text-white mb-6 uppercase tracking-wider text-sm">{t('footer.solutions')}</h4>
+            <ul className="space-y-4">
+              <li><Link className="text-slate-400 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300 text-body-sm font-body-sm" to="/products?category=tapes">{t('footer.indSol')}</Link></li>
+              <li><Link className="text-slate-400 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300 text-body-sm font-body-sm" to="/products?category=packaging">{t('footer.foodPack')}</Link></li>
             </ul>
           </div>
 
           <div className="md:col-span-1">
-            <h4 className="text-label-md font-label-md text-on-surface mb-4">{t('footer.quickContact')}</h4>
-            <form className="space-y-3" onSubmit={handleContactSubmit}>
+            <h4 className="text-label-md font-label-md text-white mb-6 uppercase tracking-wider text-sm">{t('footer.quickContact')}</h4>
+            <form className="space-y-4" onSubmit={handleContactSubmit}>
               {footerSubmitError && (
-                <div className="bg-error/10 border border-error/30 text-error rounded-md p-2 text-[12px] flex items-center gap-1.5 animate-pulse">
+                <div className="bg-error/20 border border-error/50 text-error-container rounded-md p-2 text-[12px] flex items-center gap-1.5 animate-pulse">
                   <span className="material-symbols-outlined text-[14px]">error</span>
                   <span>{footerSubmitError}</span>
                 </div>
@@ -221,7 +224,7 @@ export default function Layout() {
                   value={footerEmail}
                   onChange={(e) => setFooterEmail(e.target.value)}
                   disabled={isFooterSubmitting || isContactFormSubmitted}
-                  className="w-full bg-surface-container rounded-md border-border-muted px-4 py-2 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed" 
+                  className="w-full bg-slate-800/50 backdrop-blur-sm rounded-md border border-slate-700/50 px-4 py-2.5 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed text-white placeholder:text-slate-500 shadow-inner" 
                   placeholder={t('footer.emailPlaceholder')} 
                   type="email" 
                 />
@@ -232,17 +235,17 @@ export default function Layout() {
                   value={footerMessage}
                   onChange={(e) => setFooterMessage(e.target.value)}
                   disabled={isFooterSubmitting || isContactFormSubmitted}
-                  className="w-full bg-surface-container rounded-md border-border-muted px-4 py-2 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none disabled:opacity-50 disabled:cursor-not-allowed" 
+                  className="w-full bg-slate-800/50 backdrop-blur-sm rounded-md border border-slate-700/50 px-4 py-2.5 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none disabled:opacity-50 disabled:cursor-not-allowed text-white placeholder:text-slate-500 shadow-inner" 
                   placeholder={t('footer.helpPlaceholder')} 
                   rows={2}
                 ></textarea>
               </div>
               <button 
                 type="submit"
-                className={`w-full py-2.5 rounded-md text-label-sm font-label-sm transition-all duration-300 focus:ring-2 focus:ring-primary ring-offset-2 hover:scale-[1.02] shadow-sm flex justify-center items-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed ${
+                className={`w-full py-2.5 rounded-md text-label-sm font-label-sm transition-all duration-300 focus:ring-2 focus:ring-primary ring-offset-2 ring-offset-slate-900 hover:-translate-y-0.5 shadow-lg flex justify-center items-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0 ${
                   isContactFormSubmitted 
-                    ? 'bg-status-success text-white hover:bg-status-success' 
-                    : 'bg-primary hover:bg-primary-container text-on-primary'
+                    ? 'bg-status-success text-white hover:bg-status-success shadow-status-success/20' 
+                    : 'bg-primary hover:bg-secondary text-white shadow-primary/30'
                 }`}
                 disabled={isFooterSubmitting || isContactFormSubmitted}
               >
