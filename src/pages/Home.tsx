@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { products } from '../data/products';
 
-const FEATURED_PRODUCT_IDS = ['adpro-standard', 'twist-foil', 'adpro-printed', 'twist-baking'];
+const FEATURED_PRODUCT_IDS = ['adpro-standard', 'twist-foil', 'adpro-printed', 'twist-baking', 'adpro-stretch', 'twist-cling'];
 
 export default function Home() {
   const { t, language } = useLanguage();
@@ -109,11 +109,11 @@ export default function Home() {
             className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
           >
             {/* Background Image */}
-            <div className="absolute inset-0 w-full h-full flex items-center justify-center p-8 md:p-24">
+            <div className="absolute inset-0 w-full h-full">
               <img 
                 src={currentProduct.image} 
                 alt={prodData.name} 
-                className="w-full h-full object-contain opacity-60 drop-shadow-2xl"
+                className="w-full h-full object-cover opacity-80"
               />
             </div>
             
