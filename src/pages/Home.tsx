@@ -109,11 +109,11 @@ export default function Home() {
             className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
           >
             {/* Background Image */}
-            <div className="absolute inset-0 w-full h-full">
+            <div className="absolute inset-0 w-full h-full flex items-center justify-center p-8 md:p-24">
               <img 
                 src={currentProduct.image} 
                 alt={prodData.name} 
-                className="w-full h-full object-contain p-8 md:p-16 opacity-60"
+                className="w-full h-full object-contain opacity-60 drop-shadow-2xl"
               />
             </div>
             
