@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -6,14 +6,16 @@ import { products } from '../data/products';
 
 export default function Home() {
   const { language, t } = useLanguage();
-  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const [currentIdx, setCurrentIdx] = useState(0);
+
+  const heroProducts = products.slice(0, 5);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentProductIndex((prev) => (prev + 1) % products.length);
-    }, 3000);
+      setCurrentIdx((prev) => (prev + 1) % heroProducts.length);
+    }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [heroProducts.length]);
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30, filter: 'blur(4px)' },
@@ -33,78 +35,95 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative py-24 md:py-32 bg-pattern-dot overflow-hidden border-b border-border-muted/50">
-        <motion.div 
-          className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-        >
-          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-surface-container text-on-surface-variant px-4 py-1.5 rounded-full font-label-sm text-label-sm mb-8 border border-border-muted shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-primary"></span>
-            {t('home.heroBadge')}
-          </motion.div>
-          <motion.h1 variants={fadeInUp} className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight max-w-4xl mx-auto mb-6">
-            {t('home.heroTitleText1')}
-            <span className="text-primary">{t('home.heroTitleHighlight')}</span>
-            {t('home.heroTitleText2')}
-          </motion.h1>
-          <motion.p variants={fadeInUp} className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-10">
-            {t('home.heroSubtitle')}
-          </motion.p>
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link className="inline-flex justify-center w-full items-center bg-primary text-on-primary px-8 py-3.5 rounded-lg font-label-md text-label-md transition-colors duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-sm hover:shadow-md" to="/products">
-                {t('home.exploreBtn')}
-              </Link>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link className="inline-flex justify-center w-full items-center bg-surface border border-border-muted text-on-surface hover:border-primary hover:text-primary px-8 py-3.5 rounded-lg font-label-md text-label-md transition-colors duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-sm hover:shadow-md" to="/about">
-                {t('home.legacyBtn')}
-              </Link>
-            </motion.div>
-          </motion.div>
-          <motion.div variants={fadeInUp} className="mt-20 mx-auto max-w-3xl h-[160px] relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentProductIndex}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 flex items-center bg-surface-container/50 backdrop-blur-md rounded-2xl border border-primary/20 shadow-lg p-6 gap-6"
-              >
-                <div className="w-32 h-32 flex-shrink-0 bg-surface rounded-xl flex items-center justify-center p-2 shadow-sm border border-border-muted overflow-hidden">
-                  <img 
-                    src={products[currentProductIndex].image} 
-                    alt={language === 'fr' ? products[currentProductIndex].fr.name : products[currentProductIndex].en.name} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-left flex-grow">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border ${
-                      products[currentProductIndex].brand === 'ADPRO'
-                        ? 'bg-primary/10 text-primary border-primary/20'
-                        : 'bg-secondary/10 text-secondary border-secondary/20'
-                    }`}>
-                      {products[currentProductIndex].brand}
-                    </span>
-                    <h3 className="font-headline-md text-on-surface font-semibold">
-                      {language === 'fr' ? products[currentProductIndex].fr.name : products[currentProductIndex].en.name}
-                    </h3>
-                  </div>
-                  <p className="font-body-sm text-on-surface-variant line-clamp-2 mb-3">
-                    {language === 'fr' ? products[currentProductIndex].fr.description : products[currentProductIndex].en.description}
-                  </p>
-                  <Link to={`/products?category=${products[currentProductIndex].category}`} className="text-primary font-label-sm hover:underline flex items-center gap-1">
-                    {language === 'fr' ? 'Découvrir ce produit' : 'Discover this product'} <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-                  </Link>
-                </div>
+      <section className="relative py-20 md:py-32 bg-pattern-dot overflow-hidden border-b border-border-muted/50">
+        <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            
+            {/* Left Content */}
+            <motion.div 
+              className="text-left md:text-left text-center"
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+            >
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-surface-container text-on-surface-variant px-4 py-1.5 rounded-full font-label-sm text-label-sm mb-6 border border-border-muted shadow-sm mx-auto md:mx-0">
+                <span className="w-2 h-2 rounded-full bg-primary"></span>
+                {t('home.heroBadge')}
               </motion.div>
-            </AnimatePresence>
-          </motion.div>
-        </motion.div>
+              <motion.h1 variants={fadeInUp} className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight mb-6">
+                {t('home.heroTitleText1')}
+                <span className="text-primary">{t('home.heroTitleHighlight')}</span>
+                {t('home.heroTitleText2')}
+              </motion.h1>
+              <motion.p variants={fadeInUp} className="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-10 mx-auto md:mx-0">
+                {t('home.heroSubtitle')}
+              </motion.p>
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link className="inline-flex justify-center w-full sm:w-auto items-center bg-primary text-on-primary px-8 py-3.5 rounded-lg font-label-md text-label-md transition-colors duration-300 shadow-sm hover:shadow-md" to="/products">
+                    {t('home.exploreBtn')}
+                  </Link>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Link className="inline-flex justify-center w-full sm:w-auto items-center bg-surface border border-border-muted text-on-surface hover:border-primary hover:text-primary px-8 py-3.5 rounded-lg font-label-md text-label-md transition-colors duration-300 shadow-sm hover:shadow-md" to="/about">
+                    {t('home.legacyBtn')}
+                  </Link>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Content - Rotating Product Card */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full aspect-square md:aspect-[4/3] max-w-[500px] mx-auto lg:mx-0 lg:ml-auto"
+              style={{ perspective: 1000 }}
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIdx}
+                  initial={{ opacity: 0, y: 30, rotateX: -10 }}
+                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                  exit={{ opacity: 0, y: -30, rotateX: 10, scale: 0.95 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="absolute inset-0 w-full h-full bg-surface-container-lowest/80 backdrop-blur-md rounded-3xl border border-border-muted shadow-2xl overflow-hidden flex flex-col group"
+                >
+                  <div className="flex-grow relative flex items-center justify-center p-8 bg-surface-container/50">
+                    <img 
+                      src={heroProducts[currentIdx].image} 
+                      alt={language === 'fr' ? heroProducts[currentIdx].fr.name : heroProducts[currentIdx].en.name} 
+                      className="w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute top-6 left-6">
+                      <span className={`px-4 py-1.5 rounded-md text-xs font-bold uppercase tracking-widest border shadow-sm ${
+                        heroProducts[currentIdx].brand === 'ADPRO'
+                          ? 'bg-primary/10 text-primary border-primary/20'
+                          : 'bg-secondary/10 text-secondary border-secondary/20'
+                      }`}>
+                        {heroProducts[currentIdx].brand}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6 md:p-8 bg-surface border-t border-border-muted flex justify-between items-center">
+                    <div>
+                      <h3 className="font-headline-md text-on-surface mb-1">
+                        {language === 'fr' ? heroProducts[currentIdx].fr.name : heroProducts[currentIdx].en.name}
+                      </h3>
+                      <p className="font-body-sm text-on-surface-variant max-w-[250px] truncate">
+                        {language === 'fr' ? heroProducts[currentIdx].fr.tagline : heroProducts[currentIdx].en.tagline}
+                      </p>
+                    </div>
+                    <Link to={`/products?category=${heroProducts[currentIdx].category}`} className="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface hover:bg-primary hover:text-on-primary transition-colors">
+                      <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    </Link>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+
+          </div>
+        </div>
       </section>
 
       {/* Mini About Banner */}
