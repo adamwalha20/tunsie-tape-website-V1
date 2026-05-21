@@ -176,8 +176,8 @@ export default function Layout() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/20 blur-[120px] rounded-full pointer-events-none"></div>
         
         <div className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-16 grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
-          <div className="space-y-6 md:col-span-1">
-            <img alt="Tunisie Tape Logo" className="h-16 w-auto object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500 rounded" src="/footer-logo.png" />
+          <div className="space-y-6 md:col-span-1 flex flex-col items-start">
+            <img alt="Tunisie Tape Logo" className="h-10 md:h-12 w-auto object-contain object-left drop-shadow-2xl hover:scale-105 origin-left transition-transform duration-500 -ml-1" src="/footer-logo.png" />
             <p className="text-body-sm font-body-sm text-slate-400">
               © {new Date().getFullYear()} Tunisie Tape.<br/>{t('footer.allRights')}
             </p>
