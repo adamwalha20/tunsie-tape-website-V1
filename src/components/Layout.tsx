@@ -2,10 +2,15 @@ import { useState, useEffect, type FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { sendEmail } from '../utils/emailService';
 
 export default function Layout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactFormSubmitted, setIsContactFormSubmitted] = useState(false);
+  const [footerEmail, setFooterEmail] = useState('');
+  const [footerMessage, setFooterMessage] = useState('');
+  const [isFooterSubmitting, setIsFooterSubmitting] = useState(false);
+  const [footerSubmitError, setFooterSubmitError] = useState('');
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
 
@@ -13,12 +18,28 @@ export default function Layout() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
-  const handleContactSubmit = (e: FormEvent) => {
+  const handleContactSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsContactFormSubmitted(true);
-    setTimeout(() => {
-      setIsContactFormSubmitted(false);
-    }, 3000);
+    setIsFooterSubmitting(true);
+    setFooterSubmitError('');
+
+    const result = await sendEmail({
+      email: footerEmail,
+      message: footerMessage,
+      formType: 'footer_quick_contact'
+    });
+
+    if (result.success) {
+      setIsContactFormSubmitted(true);
+      setFooterEmail('');
+      setFooterMessage('');
+      setTimeout(() => {
+        setIsContactFormSubmitted(false);
+      }, 4000);
+    } else {
+      setFooterSubmitError(result.message);
+    }
+    setIsFooterSubmitting(false);
   };
 
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -74,13 +95,38 @@ export default function Layout() {
               {t('nav.getQuote')}
             </Link>
           </div>
-          <button 
-            className="md:hidden text-on-surface-variant p-2 hover:bg-surface-container rounded-md transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
-          >
-            <span className="material-symbols-outlined">{isMobileMenuOpen ? 'close' : 'menu'}</span>
-          </button>
+          <div className="flex items-center gap-3 md:hidden">
+            {/* Mobile Header Language Switcher */}
+            <div className="flex items-center bg-surface-container border border-border-muted/50 rounded-lg p-0.5 font-label-sm text-[12px] font-semibold shadow-inner">
+              <button 
+                onClick={() => setLanguage('fr')} 
+                className={`px-2 py-1 rounded-md transition-all duration-300 cursor-pointer ${
+                  language === 'fr' 
+                    ? 'bg-primary text-on-primary shadow-sm' 
+                    : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-high'
+                }`}
+              >
+                FR
+              </button>
+              <button 
+                onClick={() => setLanguage('en')} 
+                className={`px-2 py-1 rounded-md transition-all duration-300 cursor-pointer ${
+                  language === 'en' 
+                    ? 'bg-primary text-on-primary shadow-sm' 
+                    : 'text-on-surface-variant hover:text-primary hover:bg-surface-container-high'
+                }`}
+              >
+                EN
+              </button>
+            </div>
+            <button 
+              className="text-on-surface-variant p-2 hover:bg-surface-container rounded-md transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              <span className="material-symbols-outlined">{isMobileMenuOpen ? 'close' : 'menu'}</span>
+            </button>
+          </div>
         </div>
         
         {isMobileMenuOpen && (
@@ -103,32 +149,7 @@ export default function Layout() {
                 {t('nav.contact')}
               </Link>
 
-              {/* Mobile Language Switcher */}
-              <div className="pt-3 border-t border-border-muted flex justify-between items-center">
-                <span className="font-label-sm text-on-surface-variant text-[13px]">Langue / Language</span>
-                <div className="flex items-center bg-surface-container border border-border-muted/50 rounded-lg p-0.5 font-label-sm text-[12px] font-semibold shadow-inner">
-                  <button 
-                    onClick={() => { setLanguage('fr'); closeMenu(); }} 
-                    className={`px-3 py-1.5 rounded-md transition-all duration-300 cursor-pointer ${
-                      language === 'fr' 
-                        ? 'bg-primary text-on-primary shadow-sm' 
-                        : 'text-on-surface-variant hover:text-primary'
-                    }`}
-                  >
-                    FR
-                  </button>
-                  <button 
-                    onClick={() => { setLanguage('en'); closeMenu(); }} 
-                    className={`px-3 py-1.5 rounded-md transition-all duration-300 cursor-pointer ${
-                      language === 'en' 
-                        ? 'bg-primary text-on-primary shadow-sm' 
-                        : 'text-on-surface-variant hover:text-primary'
-                    }`}
-                  >
-                    EN
-                  </button>
-                </div>
-              </div>
+
 
               <Link to="/contact" className="bg-primary text-center hover:bg-secondary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md transition-colors block" onClick={closeMenu}>
                 {t('nav.getQuote')}
@@ -188,22 +209,52 @@ export default function Layout() {
           <div className="md:col-span-1">
             <h4 className="text-label-md font-label-md text-on-surface mb-4">{t('footer.quickContact')}</h4>
             <form className="space-y-3" onSubmit={handleContactSubmit}>
+              {footerSubmitError && (
+                <div className="bg-error/10 border border-error/30 text-error rounded-md p-2 text-[12px] flex items-center gap-1.5 animate-pulse">
+                  <span className="material-symbols-outlined text-[14px]">error</span>
+                  <span>{footerSubmitError}</span>
+                </div>
+              )}
               <div>
-                <input required className="w-full bg-surface-container rounded-md border-border-muted px-4 py-2 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none" placeholder={t('footer.emailPlaceholder')} type="email" />
+                <input 
+                  required 
+                  value={footerEmail}
+                  onChange={(e) => setFooterEmail(e.target.value)}
+                  disabled={isFooterSubmitting || isContactFormSubmitted}
+                  className="w-full bg-surface-container rounded-md border-border-muted px-4 py-2 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed" 
+                  placeholder={t('footer.emailPlaceholder')} 
+                  type="email" 
+                />
               </div>
               <div>
-                <textarea required className="w-full bg-surface-container rounded-md border-border-muted px-4 py-2 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none" placeholder={t('footer.helpPlaceholder')} rows={2}></textarea>
+                <textarea 
+                  required 
+                  value={footerMessage}
+                  onChange={(e) => setFooterMessage(e.target.value)}
+                  disabled={isFooterSubmitting || isContactFormSubmitted}
+                  className="w-full bg-surface-container rounded-md border-border-muted px-4 py-2 text-body-sm font-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none disabled:opacity-50 disabled:cursor-not-allowed" 
+                  placeholder={t('footer.helpPlaceholder')} 
+                  rows={2}
+                ></textarea>
               </div>
               <button 
                 type="submit"
-                className={`w-full py-2.5 rounded-md text-label-sm font-label-sm transition-all duration-300 focus:ring-2 focus:ring-primary ring-offset-2 hover:scale-[1.02] shadow-sm flex justify-center items-center gap-2 cursor-pointer ${
+                className={`w-full py-2.5 rounded-md text-label-sm font-label-sm transition-all duration-300 focus:ring-2 focus:ring-primary ring-offset-2 hover:scale-[1.02] shadow-sm flex justify-center items-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed ${
                   isContactFormSubmitted 
                     ? 'bg-status-success text-white hover:bg-status-success' 
                     : 'bg-primary hover:bg-primary-container text-on-primary'
                 }`}
-                disabled={isContactFormSubmitted}
+                disabled={isFooterSubmitting || isContactFormSubmitted}
               >
-                {isContactFormSubmitted ? (
+                {isFooterSubmitting ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    {language === 'fr' ? 'Envoi...' : 'Sending...'}
+                  </>
+                ) : isContactFormSubmitted ? (
                   <>
                     <span className="material-symbols-outlined text-[16px]">check_circle</span>
                     {t('footer.successState')}

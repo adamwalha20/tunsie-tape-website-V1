@@ -2,6 +2,7 @@ import { useState, useEffect, type FormEvent } from 'react';
 import { motion } from 'motion/react';
 import { useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
+import { sendEmail } from '../utils/emailService';
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -14,6 +15,8 @@ export default function Contact() {
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     if (productParam) {
@@ -37,16 +40,32 @@ export default function Contact() {
     }
   }, [productParam, specParam, language]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsFormSubmitted(true);
-    setFullName('');
-    setEmailAddress('');
-    setSubject('');
-    setMessage('');
-    setTimeout(() => {
-      setIsFormSubmitted(false);
-    }, 4000);
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    const result = await sendEmail({
+      name: fullName,
+      email: emailAddress,
+      subject,
+      message,
+      formType: 'contact_page'
+    });
+
+    if (result.success) {
+      setIsFormSubmitted(true);
+      setFullName('');
+      setEmailAddress('');
+      setSubject('');
+      setMessage('');
+      setTimeout(() => {
+        setIsFormSubmitted(false);
+      }, 5000);
+    } else {
+      setSubmitError(result.message);
+    }
+    setIsSubmitting(false);
   };
 
   const fadeInUp = {
@@ -104,6 +123,13 @@ export default function Contact() {
                  </div>
               ) : (
                 <form className="space-y-6" onSubmit={handleSubmit}>
+                  {submitError && (
+                    <div className="bg-error/10 border border-error/30 text-error rounded-xl p-4 flex items-center gap-3 animate-pulse">
+                      <span className="material-symbols-outlined text-[20px]">error</span>
+                      <p className="font-body-md text-body-md">{submitError}</p>
+                    </div>
+                  )}
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label className="font-label-sm text-label-sm text-on-surface-variant" htmlFor="fullName">{t('contact.fullName')}</label>
@@ -111,7 +137,8 @@ export default function Contact() {
                         required id="fullName" type="text"
                         value={fullName}
                         onChange={(e) => setFullName(e.target.value)}
-                        className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                        disabled={isSubmitting}
+                        className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder={t('contact.fullNamePlaceholder')}
                       />
                     </div>
@@ -121,7 +148,8 @@ export default function Contact() {
                         required id="emailAddress" type="email"
                         value={emailAddress}
                         onChange={(e) => setEmailAddress(e.target.value)}
-                        className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                        disabled={isSubmitting}
+                        className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                         placeholder={t('contact.emailPlaceholder')}
                       />
                     </div>
@@ -133,7 +161,8 @@ export default function Contact() {
                       required id="subject" type="text"
                       value={subject}
                       onChange={(e) => setSubject(e.target.value)}
-                      className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                      disabled={isSubmitting}
+                      className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder={t('contact.subjectPlaceholder')}
                     />
                   </div>
@@ -144,18 +173,32 @@ export default function Contact() {
                       required id="message" rows={5}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-y"
+                      disabled={isSubmitting}
+                      className="w-full bg-surface-container rounded-lg border border-border-muted px-4 py-3.5 text-body-md font-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-y disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder={t('contact.messagePlaceholder')}
                     ></textarea>
                   </div>
 
                   <motion.button 
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                    whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                     type="submit"
-                    className="w-full sm:w-auto bg-primary hover:bg-primary-container text-on-primary px-10 py-4 rounded-lg font-label-md text-label-md transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto bg-primary hover:bg-primary-container text-on-primary px-10 py-4 rounded-lg font-label-md text-label-md transition-all duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 shadow-sm flex items-center justify-center gap-2 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {t('contact.sendBtn')} <span className="material-symbols-outlined text-[18px]">send</span>
+                    {isSubmitting ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        {language === 'fr' ? 'Envoi en cours...' : 'Sending...'}
+                      </>
+                    ) : (
+                      <>
+                        {t('contact.sendBtn')} <span className="material-symbols-outlined text-[18px]">send</span>
+                      </>
+                    )}
                   </motion.button>
                 </form>
               )}
