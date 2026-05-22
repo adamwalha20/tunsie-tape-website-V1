@@ -81,8 +81,9 @@ export default function Home() {
   return (
     <>
       {/* Full Screen Swipeable Hero Carousel */}
-      <section className="relative w-full h-[85vh] bg-black overflow-hidden flex flex-col justify-center">
-        <AnimatePresence initial={false} custom={direction}>
+      <section className="relative w-full min-h-[85vh] bg-black overflow-hidden flex flex-col justify-center py-24">
+        <div className="absolute inset-0 w-full h-full">
+          <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentIndex}
             custom={direction}
@@ -113,7 +114,7 @@ export default function Home() {
               <img 
                 src={currentProduct.image} 
                 alt={prodData.name} 
-                className="w-full h-full object-cover opacity-80"
+                className="w-full h-full object-contain md:object-cover opacity-80"
               />
             </div>
             
@@ -121,9 +122,10 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30 pointer-events-none" />
           </motion.div>
         </AnimatePresence>
+        </div>
 
         {/* Static Content Layer over the carousel */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-6 z-10">
+        <div className="relative z-10 w-full flex items-center justify-center pointer-events-none px-6">
           <motion.div 
             className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center pointer-events-auto"
             initial="hidden"
@@ -158,7 +160,7 @@ export default function Home() {
         </div>
 
         {/* Swipe Indicators & Pagination */}
-        <div className="absolute bottom-10 left-0 right-0 flex justify-center items-center gap-6 z-10">
+        <div className="relative z-10 mt-12 md:mt-16 flex justify-center items-center gap-6">
           <button 
             className="w-12 h-12 rounded-full bg-black/30 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-colors shadow-lg cursor-pointer"
             onClick={() => paginate(-1)}
@@ -202,7 +204,7 @@ export default function Home() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
               variants={staggerContainer}
             >
               <motion.h2 variants={fadeInUp} className="font-headline-xl text-headline-xl text-on-surface mb-6">
@@ -220,7 +222,7 @@ export default function Home() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, clipPath: 'inset(10% 10% 10% 10% round 10px)' }}
               whileInView={{ opacity: 1, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 10px)' }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="relative overflow-hidden border border-border-muted shadow-subtle aspect-[4/3] group"
             >
@@ -238,7 +240,7 @@ export default function Home() {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-100px" }}
           variants={fadeInUp}
           className="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop text-center"
         >
