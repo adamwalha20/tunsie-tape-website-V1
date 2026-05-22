@@ -204,8 +204,8 @@ export default function Layout() {
           <div className="md:col-span-1">
             <h4 className="text-label-md font-label-md text-white mb-6 uppercase tracking-wider text-sm">{t('footer.solutions')}</h4>
             <ul className="space-y-4">
-              <li><Link className="text-slate-400 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300 text-body-sm font-body-sm" to="/products?category=tapes">{t('footer.indSol')}</Link></li>
-              <li><Link className="text-slate-400 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300 text-body-sm font-body-sm" to="/products?category=packaging">{t('footer.foodPack')}</Link></li>
+              <li><Link className="text-slate-400 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300 text-body-sm font-body-sm" to="/products?category=adhesif">{t('footer.indSol')}</Link></li>
+              <li><Link className="text-slate-400 hover:text-primary hover:translate-x-1 inline-block transition-all duration-300 text-body-sm font-body-sm" to="/products?category=alimentaire">{t('footer.foodPack')}</Link></li>
             </ul>
           </div>
 

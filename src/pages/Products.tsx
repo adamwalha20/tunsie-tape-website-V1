@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, CSSProperties } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -89,13 +89,34 @@ function ProductVisual({ visualType }: { visualType: string }) {
           <circle cx="50" cy="50" r="10" fill="#ffffff" />
         </svg>
       );
-    case 'container':
+    case 'container-rect':
       return (
-        <svg className="w-24 h-24 text-primary" viewBox="0 0 100 100" fill="none">
-          <rect x="15" y="25" width="70" height="50" rx="6" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="3" />
-          <rect x="22" y="32" width="56" height="36" rx="2" fill="none" stroke="#d1d5db" strokeWidth="2" strokeDasharray="4 2" />
-          <line x1="38" y1="25" x2="38" y2="75" stroke="#9ca3af" strokeWidth="2" />
-          <line x1="62" y1="25" x2="62" y2="75" stroke="#9ca3af" strokeWidth="2" />
+        <svg className="w-24 h-24 text-secondary" viewBox="0 0 100 100" fill="none">
+          <path d="M15 35 L85 35 L75 75 L25 75 Z" fill="#f1f5f9" stroke="#94a3b8" strokeWidth="3" strokeLinejoin="round" />
+          <path d="M10 32 L90 32 L85 38 L15 38 Z" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="2" strokeLinejoin="round" />
+          <line x1="30" y1="38" x2="33" y2="72" stroke="#cbd5e1" strokeWidth="1.5" />
+          <line x1="43" y1="38" x2="43" y2="72" stroke="#cbd5e1" strokeWidth="1.5" />
+          <line x1="57" y1="38" x2="57" y2="72" stroke="#cbd5e1" strokeWidth="1.5" />
+          <line x1="70" y1="38" x2="67" y2="72" stroke="#cbd5e1" strokeWidth="1.5" />
+        </svg>
+      );
+    case 'container-circle':
+      return (
+        <svg className="w-24 h-24 text-secondary" viewBox="0 0 100 100" fill="none">
+          <ellipse cx="50" cy="50" rx="38" ry="25" fill="#f1f5f9" stroke="#94a3b8" strokeWidth="3" />
+          <ellipse cx="50" cy="54" rx="30" ry="18" fill="none" stroke="#cbd5e1" strokeWidth="1.5" />
+          <path d="M12 50 C12 65, 88 65, 88 50" stroke="#cbd5e1" strokeWidth="2" />
+          <line x1="30" y1="65" x2="50" y2="75" stroke="#94a3b8" strokeWidth="1" />
+          <line x1="70" y1="65" x2="50" y2="75" stroke="#94a3b8" strokeWidth="1" />
+        </svg>
+      );
+    case 'container-compart':
+      return (
+        <svg className="w-24 h-24 text-secondary" viewBox="0 0 100 100" fill="none">
+          <path d="M15 35 L85 35 L75 75 L25 75 Z" fill="#f1f5f9" stroke="#94a3b8" strokeWidth="3" strokeLinejoin="round" />
+          <path d="M10 32 L90 32 L85 38 L15 38 Z" fill="#cbd5e1" stroke="#94a3b8" strokeWidth="2" strokeLinejoin="round" />
+          <path d="M45 38 L45 72" stroke="#94a3b8" strokeWidth="2.5" strokeLinecap="round" />
+          <path d="M45 55 L71 55" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
         </svg>
       );
     case 'foil':
@@ -136,15 +157,16 @@ export default function Products() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedDimension, setSelectedDimension] = useState<string>('');
 
-  const selectedCategory = searchParams.get('category') || 'all';
+  const rawCategory = searchParams.get('category') || 'all';
+  const selectedCategory = useMemo(() => {
+    if (rawCategory === 'tapes') return 'adhesif';
+    if (rawCategory === 'packaging') return 'alimentaire';
+    return rawCategory;
+  }, [rawCategory]);
 
   const setSelectedCategory = (category: string) => {
     setSearchParams((prev) => {
-      if (category === 'all') {
-        prev.delete('category');
-      } else {
-        prev.set('category', category);
-      }
+      prev.set('category', category);
       return prev;
     }, { replace: true });
 
@@ -158,7 +180,7 @@ export default function Products() {
   // Scroll to top on load, or to finder if category is preselected
   useEffect(() => {
     const category = searchParams.get('category');
-    if (category && category !== 'all') {
+    if (category) {
       const timer = setTimeout(() => {
         const element = document.getElementById('product-finder');
         if (element) {
@@ -174,10 +196,7 @@ export default function Products() {
   // Filter products based on category and search query
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {
-      const matchesCategory =
-        selectedCategory === 'all' ||
-        (selectedCategory === 'tapes' && product.category === 'tapes') ||
-        (selectedCategory === 'packaging' && (product.category === 'packaging' || product.category === 'kitchen'));
+      const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
 
       const productData = language === 'fr' ? product.fr : product.en;
       const matchesSearch =
@@ -304,7 +323,7 @@ export default function Products() {
                 <span className="bg-primary/5 text-primary text-[12px] font-medium px-3 py-1 rounded-full border border-primary/10">5S Standards</span>
               </div>
               <button 
-                onClick={() => setSelectedCategory('tapes')} 
+                onClick={() => setSelectedCategory('adhesif')} 
                 className="inline-flex items-center gap-2 text-primary font-label-md text-label-md hover:underline text-left self-start group cursor-pointer"
               >
                 {language === 'fr' ? 'Découvrir nos Rubans Adhésifs' : 'Discover our Adhesive Tapes'} 
@@ -369,7 +388,7 @@ export default function Products() {
                 <span className="bg-secondary/5 text-secondary text-[12px] font-medium px-3 py-1 rounded-full border border-secondary/10">Superior Elasticity</span>
               </div>
               <button 
-                onClick={() => setSelectedCategory('packaging')} 
+                onClick={() => setSelectedCategory('alimentaire')} 
                 className="inline-flex items-center gap-2 text-secondary font-label-md text-label-md hover:underline text-left self-start group cursor-pointer"
               >
                 {language === 'fr' ? 'Découvrir nos Films & Emballages' : 'Discover our Films & Packaging'} 
@@ -401,9 +420,9 @@ export default function Products() {
             {/* Category Tabs */}
             <div className="flex flex-wrap gap-2 bg-surface p-1.5 rounded-2xl border border-border-muted shadow-subtle w-full md:w-auto">
               {[
-                { id: 'all', label: t('products.all'), icon: 'grid_view' },
-                { id: 'tapes', label: language === 'fr' ? 'Rubans Adhésifs' : 'Adhesive Tapes', icon: 'layers' },
-                { id: 'packaging', label: language === 'fr' ? 'Films & Emballages' : 'Films & Packaging', icon: 'package_2' }
+                { id: 'all', label: language === 'fr' ? 'Tout' : 'ALL', icon: 'grid_view' },
+                { id: 'adhesif', label: language === 'fr' ? 'Emballage Adhésif' : 'Adhesive Packaging', icon: 'layers' },
+                { id: 'alimentaire', label: language === 'fr' ? 'Emballage Alimentaire' : 'Alimentaire Packaging', icon: 'restaurant' }
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -451,6 +470,18 @@ export default function Products() {
             <AnimatePresence mode="popLayout">
               {filteredProducts.map((product) => {
                 const productData = language === 'fr' ? product.fr : product.en;
+                const isContainer = product.id.startsWith('barquette-');
+                
+                // Helper to get scale of container based on volume
+                const getContainerScale = (id: string) => {
+                  if (id.includes('rect-900') || id.includes('rond-940') || id.includes('compart-3')) return 1.0;
+                  if (id.includes('rect-724') || id.includes('compart-2') || id.includes('rond-660')) return 0.85;
+                  if (id.includes('rect-586') || id.includes('rect-530')) return 0.75;
+                  if (id.includes('rect-385')) return 0.65;
+                  if (id.includes('rond-110')) return 0.50;
+                  return 1.0;
+                };
+
                 return (
                   <motion.div
                     layout
@@ -463,13 +494,25 @@ export default function Products() {
                     className="bg-surface-container-lowest rounded-2xl overflow-hidden border border-border-muted shadow-subtle hover:shadow-lg transition-all flex flex-col justify-between group"
                   >
                     {/* Card Image/Icon Header */}
-                    <div className="aspect-[4/3] bg-surface relative overflow-hidden flex items-center justify-center border-b border-border-muted">
+                    <div className="aspect-[4/3] bg-surface relative overflow-hidden flex items-center justify-center border-b border-border-muted p-4">
                       {/* Product image with sleek zoom effect */}
-                      <img 
-                        src={product.image} 
-                        alt={productData.name} 
-                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
+                      {isContainer ? (
+                        <img 
+                          src={product.image} 
+                          alt={productData.name} 
+                          style={{ 
+                            '--base-scale': getContainerScale(product.id),
+                            transform: 'scale(calc(var(--base-scale) * var(--hover-factor, 1)))'
+                          } as CSSProperties}
+                          className="w-full h-full object-contain origin-center drop-shadow-sm transition-transform duration-500 group-hover:[--hover-factor:1.05]"
+                        />
+                      ) : (
+                        <img 
+                          src={product.image} 
+                          alt={productData.name} 
+                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      )}
                       
                       {/* Brand indicator bubble */}
                       <div className="absolute top-4 left-4 flex gap-1.5">
