@@ -114,7 +114,7 @@ export default function Home() {
               <img 
                 src={currentProduct.image} 
                 alt={prodData.name} 
-                className="w-full h-full object-contain md:object-cover opacity-80"
+                className="w-full h-full object-cover object-center opacity-80"
               />
             </div>
             
