@@ -40,7 +40,7 @@ export default function Home() {
   const slideVariants = {
     enter: (direction: number) => {
       return {
-        x: direction > 0 ? 1000 : -1000,
+        x: direction > 0 ? 200 : -200,
         opacity: 0
       };
     },
@@ -52,7 +52,7 @@ export default function Home() {
     exit: (direction: number) => {
       return {
         zIndex: 0,
-        x: direction < 0 ? 1000 : -1000,
+        x: direction < 0 ? 200 : -200,
         opacity: 0
       };
     }
@@ -92,8 +92,8 @@ export default function Home() {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "tween", ease: [0.22, 1, 0.36, 1], duration: 0.8 },
-              opacity: { duration: 0.6, ease: "easeInOut" }
+              x: { type: "tween", ease: [0.22, 1, 0.36, 1], duration: 1.0 },
+              opacity: { duration: 0.8, ease: "easeInOut" }
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
