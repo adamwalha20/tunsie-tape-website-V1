@@ -208,7 +208,7 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       sfaxAddress: 'Zone Industrielle Poudrière 1, Sfax',
       sfaxPoudriere: 'Usine Sfax (Route de Mahdia)',
       sfaxPoudriereAddress: 'Route de Mahdia Km 10, Sfax',
-      tunisBranch: 'Succursale Tunis',
+      tunisBranch: 'Dépôt Tunis',
       tunisAddress: '126 Av. Mustapha Mohsen\nBorj Louzir, Ariana, Tunis',
       msakenFacility: 'Dépôt Msaken',
       msakenAddress: 'Route de Kairouan\nMsaken 4070, Sousse'
@@ -268,7 +268,7 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       sfaxPoudriereBadge: 'Corporate Headquarters',
       sfaxPoudriereTitle: 'Sfax (Poudriere)',
       sfaxPoudriereDesc: 'Our headquarters and corporate hub handling administrative, commercial, and logistics operations.',
-      tunisBadge: 'Commercial Branch',
+      tunisBadge: 'Commercial Depot',
       tunisTitle: 'Tunis',
       tunisDesc: 'Capital distribution hub, ensuring rapid logistics for our north Tunisian partners.',
       msakenBadge: 'Commercial Branch',
@@ -322,7 +322,7 @@ export const translations: Record<'fr' | 'en', TranslationSchema> = {
       sfaxAddress: 'Industrial Zone Poudriere 1, Sfax',
       sfaxPoudriere: 'Sfax Factory (Route de Mahdia)',
       sfaxPoudriereAddress: 'Route de Mahdia Km 10, Sfax',
-      tunisBranch: 'Tunis Branch',
+      tunisBranch: 'Tunis Depot',
       tunisAddress: '126 Av. Mustapha Mohsen\nBorj Louzir, Ariana, Tunis',
       msakenFacility: 'Msaken Facility',
       msakenAddress: 'Route de Kairouan\nMsaken 4070, Sousse'
