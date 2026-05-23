@@ -19,7 +19,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       paginate(1);
-    }, 6000);
+    }, 3000);
     return () => clearInterval(timer);
   }, [currentIndex]);
 
@@ -92,8 +92,8 @@ export default function Home() {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "spring", stiffness: 300, damping: 30 },
-              opacity: { duration: 0.2 }
+              x: { type: "tween", ease: [0.22, 1, 0.36, 1], duration: 0.8 },
+              opacity: { duration: 0.6, ease: "easeInOut" }
             }}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
