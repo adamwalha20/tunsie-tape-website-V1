@@ -420,9 +420,9 @@ export default function Products() {
             {/* Category Tabs */}
             <div className="flex flex-wrap gap-2 bg-surface p-1.5 rounded-2xl border border-border-muted shadow-subtle w-full md:w-auto">
               {[
-                { id: 'all', label: language === 'fr' ? 'Tout' : 'ALL', icon: 'grid_view' },
-                { id: 'adhesif', label: language === 'fr' ? 'Emballage Adhésif' : 'Adhesive Packaging', icon: 'layers' },
-                { id: 'alimentaire', label: language === 'fr' ? 'Emballage Alimentaire' : 'Alimentaire Packaging', icon: 'restaurant' }
+                { id: 'all', label: t('products.all'), icon: 'grid_view' },
+                { id: 'adhesif', label: t('products.tapes'), icon: 'layers' },
+                { id: 'alimentaire', label: t('products.packaging'), icon: 'restaurant' }
               ].map((tab) => (
                 <button
                   key={tab.id}
