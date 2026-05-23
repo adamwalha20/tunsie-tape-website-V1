@@ -1,5 +1,5 @@
 // Import the generated high-quality brand master images
-import adproMasterImg from '../assets/adpro_industrial_tapes.png';
+import adproMasterImg from '../assets/adpro_industrial_tapes.jpg';
 import twistMasterImg from '../assets/twist_food_packaging.jpg';
 
 // Import the high-quality product images
