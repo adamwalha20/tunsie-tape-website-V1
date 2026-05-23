@@ -124,57 +124,12 @@ export default function About() {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            {/* Sfax HQ */}
-            <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
-               <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
-                   {showMap['sfax'] ? (
-                     <iframe
-                       src="https://maps.google.com/maps?q=tunise%20tape%20sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
-                       className="w-full h-full border-0"
-                       allowFullScreen
-                       loading="lazy"
-                       title="Sfax HQ Map"
-                     ></iframe>
-                  ) : (
-                      <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80" alt="Sfax Manufacturing & Headquarters" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  )}
-                  <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted z-10">
-                     <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
-                     {t('about.sfaxBadge')}
-                  </div>
-                  <button
-                    onClick={() => toggleMap('sfax')}
-                    className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-1.5 bg-surface-container-lowest/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-label-sm font-label-sm text-on-surface border border-border-muted shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 active:scale-95"
-                  >
-                     <span className="material-symbols-outlined text-[16px]">
-                       {showMap['sfax'] ? 'photo' : 'map'}
-                     </span>
-                     {showMap['sfax'] ? t('about.viewPhoto') : t('about.viewMap')}
-                  </button>
-               </div>
-               <div className="p-6">
-                 <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.sfaxTitle')}</h3>
-                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 font-normal min-h-[64px]">
-                   {t('about.sfaxDesc')}
-                 </p>
-                 <a 
-                   href="https://maps.google.com/?q=tunise+tape+sfax" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
-                 >
-                   <span className="material-symbols-outlined text-[16px]">directions</span>
-                   Directions (Google Maps)
-                 </a>
-               </div>
-            </motion.div>
-
-            {/* Sfax Poudriere */}
+            {/* Sfax HQ (Poudriere) */}
             <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
                <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
                    {showMap['sfax_poudriere'] ? (
                      <iframe
-                       src="https://maps.google.com/maps?q=tunisia%20tape%20manufactuer&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       src="https://maps.google.com/maps?q=tunisie%20tape%20poudriere%20sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
                        className="w-full h-full border-0"
                        allowFullScreen
                        loading="lazy"
@@ -184,7 +139,7 @@ export default function About() {
                       <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80" alt="Sfax Poudriere Commercial Office" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   )}
                   <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted z-10">
-                     <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                     <span className="w-1.5 h-1.5 rounded-full bg-primary"></span>
                      {t('about.sfaxPoudriereBadge')}
                   </div>
                   <button
@@ -203,7 +158,52 @@ export default function About() {
                    {t('about.sfaxPoudriereDesc')}
                  </p>
                  <a 
-                   href="https://maps.google.com/?q=tunisia+tape+manufactuer" 
+                   href="https://maps.google.com/?q=tunisie+tape+poudriere+sfax" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
+                 >
+                   <span className="material-symbols-outlined text-[16px]">directions</span>
+                   Directions (Google Maps)
+                 </a>
+               </div>
+            </motion.div>
+
+            {/* Sfax Factory (Route de Mahdia) */}
+            <motion.div variants={fadeInUp} whileHover={{ y: -5, transition: { duration: 0.3 } }} className="group rounded-xl overflow-hidden border border-border-muted shadow-subtle bg-surface hover:shadow-lg transition-shadow">
+               <div className="aspect-[4/3] bg-surface-variant overflow-hidden relative">
+                   {showMap['sfax'] ? (
+                     <iframe
+                       src="https://maps.google.com/maps?q=tunisie%20tape%20route%20de%20mahdia%20sfax&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                       className="w-full h-full border-0"
+                       allowFullScreen
+                       loading="lazy"
+                       title="Sfax HQ Map"
+                     ></iframe>
+                  ) : (
+                      <img src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80" alt="Sfax Manufacturing & Headquarters" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  )}
+                  <div className="absolute top-4 left-4 inline-flex items-center gap-1 bg-surface-container-lowest/90 backdrop-blur-sm px-3 py-1 rounded-full text-label-sm font-label-sm border border-border-muted z-10">
+                     <span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                     {t('about.sfaxBadge')}
+                  </div>
+                  <button
+                    onClick={() => toggleMap('sfax')}
+                    className="absolute bottom-4 right-4 z-10 inline-flex items-center gap-1.5 bg-surface-container-lowest/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-label-sm font-label-sm text-on-surface border border-border-muted shadow-sm hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 active:scale-95"
+                  >
+                     <span className="material-symbols-outlined text-[16px]">
+                       {showMap['sfax'] ? 'photo' : 'map'}
+                     </span>
+                     {showMap['sfax'] ? t('about.viewPhoto') : t('about.viewMap')}
+                  </button>
+               </div>
+               <div className="p-6">
+                 <h3 className="font-headline-lg text-headline-lg text-on-surface mb-2">{t('about.sfaxTitle')}</h3>
+                 <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 font-normal min-h-[64px]">
+                   {t('about.sfaxDesc')}
+                 </p>
+                 <a 
+                   href="https://maps.google.com/?q=tunisie+tape+route+de+mahdia+sfax" 
                    target="_blank" 
                    rel="noopener noreferrer"
                    className="inline-flex items-center gap-1 text-primary hover:text-primary-hover font-label-sm text-label-sm transition-colors"
