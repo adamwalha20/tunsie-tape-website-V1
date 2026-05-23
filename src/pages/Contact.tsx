@@ -250,7 +250,7 @@ export default function Contact() {
 
                 <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-md flex gap-4 transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
                   <div className="text-secondary mt-0.5">
-                    <span className="material-symbols-outlined">storefront</span>
+                    <span className="material-symbols-outlined">factory</span>
                   </div>
                   <div>
                     <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.sfaxPoudriere')}</h4>
@@ -260,7 +260,7 @@ export default function Contact() {
                 
                 <motion.div whileHover={{ scale: 1.02, x: 5 }} className="bg-surface-container-lowest p-6 rounded-xl border border-border-muted shadow-md flex gap-4 transition-all duration-300 hover:shadow-2xl hover:border-primary/30">
                   <div className="text-secondary mt-0.5">
-                    <span className="material-symbols-outlined">storefront</span>
+                    <span className="material-symbols-outlined">warehouse</span>
                   </div>
                   <div>
                     <h4 className="font-label-md text-label-md text-on-surface mb-1">{t('contact.tunisBranch')}</h4>
