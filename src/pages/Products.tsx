@@ -471,16 +471,6 @@ export default function Products() {
               {filteredProducts.map((product) => {
                 const productData = language === 'fr' ? product.fr : product.en;
                 const isContainer = product.id.startsWith('barquette-');
-                
-                // Helper to get scale of container based on volume
-                const getContainerScale = (id: string) => {
-                  if (id.includes('rect-900') || id.includes('rond-940') || id.includes('compart-3')) return 1.0;
-                  if (id.includes('rect-724') || id.includes('compart-2') || id.includes('rond-660')) return 0.85;
-                  if (id.includes('rect-586') || id.includes('rect-530')) return 0.75;
-                  if (id.includes('rect-385')) return 0.65;
-                  if (id.includes('rond-110')) return 0.50;
-                  return 1.0;
-                };
 
                 return (
                   <motion.div
@@ -501,8 +491,7 @@ export default function Products() {
                           src={product.image} 
                           alt={productData.name} 
                           style={{ 
-                            '--base-scale': getContainerScale(product.id),
-                            transform: 'scale(calc(var(--base-scale) * var(--hover-factor, 1)))'
+                            transform: 'scale(var(--hover-factor, 1))'
                           } as CSSProperties}
                           className="w-full h-full object-contain origin-center drop-shadow-sm transition-transform duration-500 group-hover:[--hover-factor:1.05]"
                         />

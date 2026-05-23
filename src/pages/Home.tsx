@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { products } from '../data/products';
 
-const FEATURED_PRODUCT_IDS = ['adpro-standard', 'twist-foil', 'adpro-printed', 'barquette-rect-900', 'adpro-stretch', 'barquette-rond-940', 'barquette-compart-3'];
+const FEATURED_PRODUCT_IDS = ['adpro-standard', 'twist-foil', 'adpro-printed', 'barquette-rect-900', 'adpro-stretch', 'barquette-rond-1032', 'barquette-compart-3'];
 
 export default function Home() {
   const { t, language } = useLanguage();

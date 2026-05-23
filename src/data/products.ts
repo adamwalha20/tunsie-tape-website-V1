@@ -13,9 +13,16 @@ import adproFloorImg from '../assets/adpro_floor.jpg';
 import adproDuctImg from '../assets/adpro_duct.png';
 
 // Import new Barquette images
-import containerRectImg from '../assets/container_rect.png';
-import containerCircleImg from '../assets/container_circle.png';
-import containerCompartImg from '../assets/container_compart.png';
+import containerRect900Img from '../assets/container_rect_900.png';
+import containerRect724Img from '../assets/container_rect_724.png';
+import containerRect586Img from '../assets/container_rect_586.png';
+import containerRect530Img from '../assets/container_rect_530.png';
+import containerRect385Img from '../assets/container_rect_385.png';
+import containerRond1032Img from '../assets/container_rond_1032.png';
+import containerRond815Img from '../assets/container_rond_815.png';
+import containerRond120Img from '../assets/container_rond_120.png';
+import containerCompart2Img from '../assets/container_compart_2.png';
+import containerCompart3Img from '../assets/container_compart_3.png';
 
 import twistFoilImg from '../assets/twist_foil.png';
 import twistClingImg from '../assets/twist_cling.png';
@@ -418,16 +425,13 @@ export const products: Product[] = [
       }
     }
   },
-
-  // --- NEW BARQUETTE PRODUCTS (REPLACED SINGLE CONTAINER ITEM) ---
-  // Rectangular Models
   {
     id: 'barquette-rect-900',
     brand: 'twist',
     category: 'alimentaire',
     visualType: 'container-rect',
     accentColor: '#bb0112',
-    image: containerRectImg,
+    image: containerRect900Img,
     fr: {
       name: 'Barquette Aluminium Rectangulaire 900 ml',
       tagline: 'Idéale pour plats chauds, rôtisserie et restauration',
@@ -475,7 +479,7 @@ export const products: Product[] = [
     category: 'alimentaire',
     visualType: 'container-rect',
     accentColor: '#bb0112',
-    image: containerRectImg,
+    image: containerRect724Img,
     fr: {
       name: 'Barquette Aluminium Rectangulaire 724 ml',
       tagline: 'Emballage rigide pour lasagnes, gratins et accompagnements',
@@ -483,7 +487,7 @@ export const products: Product[] = [
       badge: 'Modèle 724 ml',
       features: [
         '100% recyclable, respectueux de l\'environnement et inodore',
-        'Excellente conductivité thermique pour une cuisson uniforme et rapide au four',
+        'Excellente conductivité thermique pour une cuisson uniforme et rapide au au four',
         'Bords ourlés robustes facilitant la prise en main et la fermeture avec un couvercle',
         'Parfaite conservation de la fraîcheur et de la chaleur'
       ],
@@ -523,7 +527,7 @@ export const products: Product[] = [
     category: 'alimentaire',
     visualType: 'container-rect',
     accentColor: '#bb0112',
-    image: containerRectImg,
+    image: containerRect586Img,
     fr: {
       name: 'Barquette Aluminium Rectangulaire 586 ml',
       tagline: 'Format allongé idéal pour plats cuisinés et pâtisseries',
@@ -571,7 +575,7 @@ export const products: Product[] = [
     category: 'alimentaire',
     visualType: 'container-rect',
     accentColor: '#bb0112',
-    image: containerRectImg,
+    image: containerRect530Img,
     fr: {
       name: 'Barquette Aluminium Rectangulaire 530 ml',
       tagline: 'Format compact pour entrées, desserts ou petites portions',
@@ -581,7 +585,7 @@ export const products: Product[] = [
         'Format compact facilitant le stockage et le transport de petites portions',
         'Résistance élevée aux chocs thermiques (congélateur au four direct)',
         'Aluminium hermétique protégeant de l\'air et de la lumière',
-        'Idéale pour traiteurs et livraison de repas rapides'
+        'Idéale pour trauteurs et livraison de repas rapides'
       ],
       specifications: {
         'Format': 'Rectangulaire',
@@ -619,7 +623,7 @@ export const products: Product[] = [
     category: 'alimentaire',
     visualType: 'container-rect',
     accentColor: '#bb0112',
-    image: containerRectImg,
+    image: containerRect385Img,
     fr: {
       name: 'Barquette Aluminium Rectangulaire 385 ml',
       tagline: 'Petite barquette individuelle pour entrées et portions enfants',
@@ -661,20 +665,20 @@ export const products: Product[] = [
       }
     }
   },
-
+  
   // Circular Models
   {
-    id: 'barquette-rond-940',
+    id: 'barquette-rond-1032',
     brand: 'twist',
     category: 'alimentaire',
     visualType: 'container-circle',
     accentColor: '#bb0112',
-    image: containerCircleImg,
+    image: containerRond1032Img,
     fr: {
-      name: 'Barquette Aluminium Ronde 940 ml',
-      tagline: 'Plat rond idéal pour tartes, tourtes et quiches de taille moyenne',
-      description: 'Plat circulaire en aluminium de 940 ml. Parfaitement adapté pour cuire de belles tartes ou tourtes au four, assurant un fond de pâte croustillant grâce à sa cuisson uniforme.',
-      badge: 'Ronde 940 ml',
+      name: 'Barquette Aluminium Ronde 1032 ml',
+      tagline: 'Grand plat circulaire idéal pour tartes, quiches et plats familiaux',
+      description: 'Notre plus grand format de plat rond en aluminium avec une capacité généreuse de 1032 ml, idéal pour la cuisson uniforme et la présentation de quiches et tartes familiales.',
+      badge: 'Grand Format - 1032 ml',
       features: [
         'Forme circulaire classique avec bord cannelé élégant',
         'Excellente rigidité latérale empêchant les déformations pendant la cuisson',
@@ -683,18 +687,18 @@ export const products: Product[] = [
       ],
       specifications: {
         'Format': 'Circulaire / Rond',
-        'Diamètre Extérieur (Top Outer)': '218 mm',
-        'Diamètre Intérieur (Top Inner)': '201 mm',
-        'Base': '168 mm',
-        'Hauteur': '38 mm',
-        'Capacité': '940 ml'
+        'Diamètre Extérieur (Top Outer)': '164 mm',
+        'Diamètre Intérieur (Top Inner)': '151 mm',
+        'Base': '125 mm',
+        'Hauteur': '69 mm',
+        'Capacité': '1032 ml'
       }
     },
     en: {
-      name: 'Round Aluminium Container 940 ml',
-      tagline: 'Round pan ideal for medium pies, tarts, and quiches',
-      description: 'Circular 940 ml aluminium pan. Perfectly suited for baking beautiful pies or tarts in traditional ovens, ensuring a crispy crust through even heat distribution.',
-      badge: 'Round 940 ml',
+      name: 'Round Aluminium Container 1032 ml',
+      tagline: 'Large circular pan ideal for family pies, tarts, and sharing dishes',
+      description: 'Our largest round aluminium pan model with a generous 1032 ml capacity, perfect for baking family-sized quiches, tarts, and shared dishes.',
+      badge: 'Large Format - 1032 ml',
       features: [
         'Classic circular shape with elegant fluted sidewalls',
         'Excellent lateral rigidity preventing deformation during baking',
@@ -703,26 +707,26 @@ export const products: Product[] = [
       ],
       specifications: {
         'Shape': 'Circular / Round',
-        'Top Outer Diameter': '218 mm',
-        'Top Inner Diameter': '201 mm',
-        'Base Diameter': '168 mm',
-        'Height': '38 mm',
-        'Capacity': '940 ml'
+        'Top Outer Diameter': '164 mm',
+        'Top Inner Diameter': '151 mm',
+        'Base Diameter': '125 mm',
+        'Height': '69 mm',
+        'Capacity': '1032 ml'
       }
     }
   },
   {
-    id: 'barquette-rond-660',
+    id: 'barquette-rond-815',
     brand: 'twist',
     category: 'alimentaire',
     visualType: 'container-circle',
     accentColor: '#bb0112',
-    image: containerCircleImg,
+    image: containerRond815Img,
     fr: {
-      name: 'Barquette Aluminium Ronde 660 ml',
-      tagline: 'Moule rond pour quiches individuelles et desserts à partager',
-      description: 'Plat rond en aluminium de 660 ml de capacité. Idéal pour la préparation de quiches individuelles généreuses, tartelettes ou gratins circulaires au four.',
-      badge: 'Ronde 660 ml',
+      name: 'Barquette Aluminium Ronde 815 ml',
+      tagline: 'Moule rond moyen pour quiches individuelles et desserts',
+      description: 'Plat rond en aluminium de taille moyenne avec une capacité de 815 ml, parfait pour la préparation de tartes et gratins individuels de taille généreuse.',
+      badge: 'Moyen Format - 815 ml',
       features: [
         'Format circulaire moyen très apprécié des pâtissiers et traiteurs',
         'Aluminium alimentaire haut de gamme résistant à 220°C',
@@ -731,18 +735,18 @@ export const products: Product[] = [
       ],
       specifications: {
         'Format': 'Circulaire / Rond',
-        'Diamètre Extérieur (Top Outer)': '185 mm',
-        'Diamètre Intérieur (Top Inner)': '170 mm',
-        'Base': '138 mm',
-        'Hauteur': '35 mm',
-        'Capacité': '660 ml'
+        'Diamètre Extérieur (Top Outer)': '176 mm',
+        'Diamètre Intérieur (Top Inner)': '165 mm',
+        'Base': '146 mm',
+        'Hauteur': '45 mm',
+        'Capacité': '815 ml'
       }
     },
     en: {
-      name: 'Round Aluminium Container 660 ml',
-      tagline: 'Round mold for single quiches and shared desserts',
-      description: 'Round aluminium pan with a 660 ml capacity. Ideal for preparing generous individual quiches, tarts, or circular potato gratins in the oven.',
-      badge: 'Round 660 ml',
+      name: 'Round Aluminium Container 815 ml',
+      tagline: 'Medium circular pan for individual quiches and shared desserts',
+      description: 'Medium-sized round aluminium pan with an 815 ml capacity, perfect for baking generous individual pies, tarts, and potato gratins.',
+      badge: 'Medium Format - 815 ml',
       features: [
         'Medium circular footprint popular among bakers and caterers',
         'Premium food-grade aluminium resistant up to 220°C',
@@ -751,26 +755,26 @@ export const products: Product[] = [
       ],
       specifications: {
         'Shape': 'Circular / Round',
-        'Top Outer Diameter': '185 mm',
-        'Top Inner Diameter': '170 mm',
-        'Base Diameter': '138 mm',
-        'Height': '35 mm',
-        'Capacity': '660 ml'
+        'Top Outer Diameter': '176 mm',
+        'Top Inner Diameter': '165 mm',
+        'Base Diameter': '146 mm',
+        'Height': '45 mm',
+        'Capacity': '815 ml'
       }
     }
   },
   {
-    id: 'barquette-rond-110',
+    id: 'barquette-rond-120',
     brand: 'twist',
     category: 'alimentaire',
     visualType: 'container-circle',
     accentColor: '#bb0112',
-    image: containerCircleImg,
+    image: containerRond120Img,
     fr: {
-      name: 'Gobelet Portion Rond 110 ml',
-      tagline: 'Coupelle individuelle pour sauces, condiments et desserts',
-      description: 'Petit gobelet portion rond en aluminium d\'une capacité de 110 ml. Idéal pour servir de petites portions individuelles comme des crèmes caramel, des muffins ou pour le transport hermétique de sauces.',
-      badge: 'Gobelet 110 ml',
+      name: 'Barquette Aluminium Ronde 120 ml',
+      tagline: 'Petite coupelle individuelle pour portion de sauce ou dessert',
+      description: 'Petit gobelet portion rond en aluminium d\'une capacité de 120 ml. Idéal pour servir de petites portions individuelles comme des crèmes caramel, des muffins ou pour le transport de sauces.',
+      badge: 'Petit Format - 120 ml',
       features: [
         'Format coupelle ultra-compact et empilable à l\'infini',
         'Parfait pour la cuisson directe de gâteaux ou de flans',
@@ -779,18 +783,18 @@ export const products: Product[] = [
       ],
       specifications: {
         'Format': 'Gobelet Portion Rond',
-        'Diamètre Extérieur (Top Outer)': '82 mm',
-        'Diamètre Intérieur (Top Inner)': '70 mm',
-        'Base': '54 mm',
-        'Hauteur': '36 mm',
-        'Capacité': '110 ml'
+        'Diamètre Extérieur (Top Outer)': '83 mm',
+        'Diamètre Intérieur (Top Inner)': '75 mm',
+        'Base': '55,5 mm',
+        'Hauteur': '35,7 mm',
+        'Capacité': '120 ml'
       }
     },
     en: {
-      name: 'Round Portion Cup 110 ml',
-      tagline: 'Single-serve cup for sauces, condiments, and desserts',
-      description: 'Small round 110 ml aluminium cup. Perfect for serving individual portions like creme caramel, muffins, or for the secure transport of sauces and condiments.',
-      badge: 'Cup 110 ml',
+      name: 'Round Portion Cup 120 ml',
+      tagline: 'Small single-serve portion cup for sauces and desserts',
+      description: 'Small round 120 ml aluminium portion cup. Ideal for serving small individual portions of sauces, condiments, muffins, or desserts.',
+      badge: 'Small Format - 120 ml',
       features: [
         'Ultra-compact portion format, infinitely stackable to save space',
         'Perfect for direct baking of muffins, flans, and souffles',
@@ -799,15 +803,15 @@ export const products: Product[] = [
       ],
       specifications: {
         'Shape': 'Round Portion Cup',
-        'Top Outer Diameter': '82 mm',
-        'Top Inner Diameter': '70 mm',
-        'Base Diameter': '54 mm',
-        'Height': '36 mm',
-        'Capacity': '110 ml'
+        'Top Outer Diameter': '83 mm',
+        'Top Inner Diameter': '75 mm',
+        'Base Diameter': '55.5 mm',
+        'Height': '35.7 mm',
+        'Capacity': '120 ml'
       }
     }
   },
-
+  
   // Compartmented Models
   {
     id: 'barquette-compart-3',
@@ -815,12 +819,12 @@ export const products: Product[] = [
     category: 'alimentaire',
     visualType: 'container-compart',
     accentColor: '#bb0112',
-    image: containerCompartImg,
+    image: containerCompart3Img,
     fr: {
       name: 'Barquette Aluminium 3 Compartiments',
       tagline: 'Séparation hermétique idéale pour plats complets à emporter',
-      description: 'Barquette de 900 ml divisée en 3 sections distinctes. Permet d\'emballer un repas complet (protéine, légume et féculent) sans que les aliments ou les jus ne se mélangent.',
-      badge: '3 Compartiments',
+      description: 'Barquette de 665 ml divisée en 3 sections distinctes. Permet d\'emballer un repas complet (protéine, légume et féculent) sans que les aliments ou les jus ne se mélangent.',
+      badge: '3 Compartiments - 665 ml',
       features: [
         'Trois cavités hermétiques évitant le transfert de liquides et de saveurs',
         'Rigidité structurelle accrue par les cloisons intérieures en aluminium',
@@ -829,18 +833,18 @@ export const products: Product[] = [
       ],
       specifications: {
         'Format': 'Compartimenté (3 Cavités)',
-        'Dimensions Extérieures (Top Outer)': '229 × 179 mm',
-        'Dimensions Intérieures (Top Inner)': '214 × 164 mm',
-        'Base': '194 × 144 mm',
-        'Hauteur': '31 mm',
-        'Capacité': '900 ml (total)'
+        'Dimensions Extérieures (Top Outer)': '218 × 178 mm',
+        'Dimensions Intérieures (Top Inner)': '206 × 166 mm',
+        'Base': '180 × 138 mm',
+        'Hauteur': '27 mm',
+        'Capacité': '665 ml'
       }
     },
     en: {
       name: '3-Compartment Aluminium Container',
       tagline: 'Hermetic separation ideal for combo takeaways and complete meals',
-      description: '900 ml container divided into 3 distinct sections. Allows packaging of a full meal (main protein, starch, and vegetables) without ingredients or juices mixing.',
-      badge: '3 Compartments',
+      description: '665 ml container divided into 3 distinct sections. Allows packaging of a full meal without ingredients or juices mixing.',
+      badge: '3 Compartments - 665 ml',
       features: [
         'Three separate cavities preventing liquid leakage and flavor transfer',
         'Enhanced structural rigidity provided by the internal aluminium dividers',
@@ -849,11 +853,11 @@ export const products: Product[] = [
       ],
       specifications: {
         'Shape': 'Compartmented (3 Cavities)',
-        'Top Outer Dimensions': '229 × 179 mm',
-        'Top Inner Dimensions': '214 × 164 mm',
-        'Base': '194 × 144 mm',
-        'Height': '31 mm',
-        'Capacity': '900 ml (total)'
+        'Top Outer Dimensions': '218 × 178 mm',
+        'Top Inner Dimensions': '206 × 166 mm',
+        'Base': '180 × 138 mm',
+        'Height': '27 mm',
+        'Capacity': '665 ml'
       }
     }
   },
@@ -863,12 +867,12 @@ export const products: Product[] = [
     category: 'alimentaire',
     visualType: 'container-compart',
     accentColor: '#bb0112',
-    image: containerCompartImg,
+    image: containerCompart2Img,
     fr: {
       name: 'Barquette Aluminium 2 Compartiments',
       tagline: 'Double section pour plat principal et accompagnement',
-      description: 'Barquette en aluminium robuste de 750 ml avec 2 compartiments distincts. Parfaite pour séparer un plat principal chaud de sa sauce ou de son accompagnement.',
-      badge: '2 Compartiments',
+      description: 'Barquette en aluminium robuste de 830 ml avec 2 compartiments distincts. Parfaite pour séparer un plat principal chaud de sa sauce ou de son accompagnement.',
+      badge: '2 Compartiments - 830 ml',
       features: [
         'Deux compartiments optimaux pour le portionnement des repas',
         'Excellente tenue thermique conservant la chaleur dans chaque compartiment',
@@ -877,18 +881,18 @@ export const products: Product[] = [
       ],
       specifications: {
         'Format': 'Compartimenté (2 Cavités)',
-        'Dimensions Extérieures (Top Outer)': '226 × 177 mm',
-        'Dimensions Intérieures (Top Inner)': '211 × 162 mm',
-        'Base': '191 × 142 mm',
+        'Dimensions Extérieures (Top Outer)': '221 × 172 mm',
+        'Dimensions Intérieures (Top Inner)': '212 × 163 mm',
+        'Base': '197 × 148 mm',
         'Hauteur': '29 mm',
-        'Capacité': '750 ml (total)'
+        'Capacité': '830 ml'
       }
     },
     en: {
       name: '2-Compartment Aluminium Container',
       tagline: 'Double section for main course and side division',
-      description: 'Sturdy 750 ml aluminium container with 2 distinct cavities. Ideal for separating a hot main dish from its side or sauce during transport.',
-      badge: '2 Compartments',
+      description: 'Sturdy 830 ml aluminium container with 2 distinct cavities. Ideal for separating a hot main dish from its side or sauce during transport.',
+      badge: '2 Compartments - 830 ml',
       features: [
         'Two compartments optimized for convenient meal portioning',
         'Superb thermal retention keeping both sections warm',
@@ -897,11 +901,11 @@ export const products: Product[] = [
       ],
       specifications: {
         'Shape': 'Compartmented (2 Cavities)',
-        'Top Outer Dimensions': '226 × 177 mm',
-        'Top Inner Dimensions': '211 × 162 mm',
-        'Base': '191 × 142 mm',
+        'Top Outer Dimensions': '221 × 172 mm',
+        'Top Inner Dimensions': '212 × 163 mm',
+        'Base': '197 × 148 mm',
         'Height': '29 mm',
-        'Capacity': '750 ml (total)'
+        'Capacity': '830 ml'
       }
     }
   },
